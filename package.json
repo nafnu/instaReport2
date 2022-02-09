@@ -1,0 +1,23 @@
+{
+  "name": "instareport",
+  "version": "1.0.0",
+  "description": "appReport",
+  "main": "uploader.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nafnu/instaReport.git"
+  },
+  "author": "Nathalie Flores",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nafnu/instaReport/issues"
+  },
+  "homepage": "https://github.com/nafnu/instaReport#readme",
+  "dependencies": {
+    "firebase": "^9.6.6",
+    "firebase-admin": "^10.0.2"
+  }
+}
