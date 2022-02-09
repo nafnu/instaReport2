@@ -1,3 +1,35 @@
-<p>
-  details works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      InstaReport - Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-page">
+  <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
+  <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
+  <ion-button color="new" class="custom ion-activated">Details of Incident</ion-button>
+  <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+
+  <ion-text color="new">
+    <h2>Tell us more about the incident.</h2>
+  </ion-text>
+
+
+
+
+  <ion-item>
+    <ion-label>Description</ion-label>
+    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+  </ion-item>
+
+
+
+  <div class="nextPage">
+  <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary']">NEXT</ion-button>
+  </div>
+</ion-content>

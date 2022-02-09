@@ -1,3 +1,30 @@
-<p>
-  type works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      InstaReport - Type
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-page">
+  <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
+  <ion-button color="new" class="custom ion-activated">Incident Type</ion-button>
+  <ion-button color="light" class="custom ion-activated">Details of Incident</ion-button>
+  <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
+
+  <ion-text color="new">
+    <h2>What kind of incident are you reporting?</h2>
+  </ion-text>
+
+
+  <ion-searchbar></ion-searchbar>
+
+
+
+  <div class="nextPage">
+  <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/details']">NEXT</ion-button>
+  </div>
+</ion-content>
