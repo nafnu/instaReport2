@@ -6,10 +6,12 @@ import { LocationComponent } from './components/location/location.component';
 import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', component:LoginComponent},
+  {path:'home', component:HomeComponent},
   {path:'location', component: LocationComponent},
   {path:'type', component: TypeComponent},
   {path:'details', component: DetailsComponent},
