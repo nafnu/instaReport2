@@ -3,11 +3,41 @@ import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, delet
 import { docData } from 'rxfire/firestore';
 import { Observable, BehaviorSubject} from 'rxjs';
 
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { sign } from 'crypto';
+import { signOut } from 'firebase/auth';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
+  constructor(private auth: Auth) { }
+
+  async register({email, password}) {
+    try{
+      const user = await  createUserWithEmailAndPassword(
+        this.auth, email, password);
+      return user;
+    }catch (e){
+      return null;
+    }
+    
+  }
+
+  async login({email, password}){
+    try{
+      const user = await  createUserWithEmailAndPassword(
+        this.auth, email, password);
+      return user;
+    }catch (e){
+      return null;
+    }
+  }
+
+  logout(){
+    return signOut(this.auth);
+  }
+
   
 }
