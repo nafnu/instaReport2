@@ -3,9 +3,14 @@ import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, delet
 import { docData } from 'rxfire/firestore';
 import { Observable, BehaviorSubject} from 'rxjs';
 
-import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
-import { sign } from 'crypto';
-import { signOut } from 'firebase/auth';
+import { 
+  Auth, 
+  createUserWithEmailAndPassword, 
+  signInWithEmailAndPassword,
+  signOut 
+} from '@angular/fire/auth';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +21,7 @@ export class AuthService {
 
   async register({email, password}) {
     try{
-      const user = await  createUserWithEmailAndPassword(
+      const user = await createUserWithEmailAndPassword(
         this.auth, email, password);
       return user;
     }catch (e){
@@ -27,7 +32,7 @@ export class AuthService {
 
   async login({email, password}){
     try{
-      const user = await  createUserWithEmailAndPassword(
+      const user = await signInWithEmailAndPassword(
         this.auth, email, password);
       return user;
     }catch (e){

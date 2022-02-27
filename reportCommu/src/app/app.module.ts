@@ -26,8 +26,7 @@ import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
 
-import { LoginComponent } from './components/login/login.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -37,9 +36,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LocationComponent,
     RestartComponent,
     SummaryComponent,
-    TypeComponent,
-    LoginComponent,
-    ReactiveFormsModule
+    TypeComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
