@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="new3">
+    <ion-title color="new">
+      InstaReport - Loging
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="home-page">
+
+  <ion-item>
+    <ion-label position="stacked" >Email *</ion-label>
+    <ion-input type="email" placeholder="johnKing@gmail.com"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Password *</ion-label>
+    <ion-input type="password" placeholder="********"></ion-input>
+  </ion-item>
+
+  <ion-list style="text-align:center">
+      <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/register']">REGISTER</ion-button>
+      <br>
+      <ion-button color="light" size="large" class="custom ion-activated">LOG IN</ion-button>
+  </ion-list>
+
+</ion-content>

@@ -25,6 +25,8 @@ import { LocationComponent } from './components/location/location.component';
 import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 
@@ -36,7 +38,9 @@ import { TypeComponent } from './components/type/type.component';
     LocationComponent,
     RestartComponent,
     SummaryComponent,
-    TypeComponent
+    TypeComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,

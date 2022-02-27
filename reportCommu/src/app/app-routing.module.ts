@@ -7,14 +7,17 @@ import { RestartComponent } from './components/restart/restart.component';
 import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
 
-
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
+  {path:'', component:LoginComponent},
+  {path:'register', component:RegisterComponent},
+  {path:'home', component:HomeComponent},
   {path:'location', component: LocationComponent},
   {path:'type', component: TypeComponent},
   {path:'details', component: DetailsComponent},
