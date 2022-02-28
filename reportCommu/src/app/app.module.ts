@@ -27,6 +27,10 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SplashComponent } from './components/splash/splash.component';
+
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -40,10 +44,12 @@ import { RegisterComponent } from './components/register/register.component';
     SummaryComponent,
     TypeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MenuComponent,
+    SplashComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()),

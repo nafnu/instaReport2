@@ -25,10 +25,15 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+//Import Google font
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
 :root {
     --ion-background-color: white;
-	margin-left:1%;
-	margin-right:1%;
+	margin-left:0%;
+	margin-right:0%;
+	text-align: center;
+	font-family: 'Aclonica', sans-serif;
 
 }
 
@@ -38,6 +43,21 @@
 	margin-right:35%;
 }
 
+//Import font
+.ion-title{
+	font-family: 'Aclonica', sans-serif;
+	font-size:36px;
+
+}
+
+.ion-simple{
+	font-family: 'Aclonica', sans-serif;
+	font-size:36px;
+	
+}
+
+
+//Import colours accordingly to design
 .ion-color-new {
 	--ion-color-base: var(--ion-color-new);
 	--ion-color-base-rgb: var(--ion-color-new-rgb);
