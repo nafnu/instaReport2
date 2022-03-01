@@ -3,13 +3,14 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>
-      InstaReport - Details
+    <ion-title color="new">
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Details</p>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home-page">
+
+<ion-content class="details-page">
   <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
   <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
   <ion-button color="new" class="custom ion-activated">Details of Incident</ion-button>

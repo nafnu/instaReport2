@@ -1,27 +1,71 @@
 <ion-header>
   <ion-toolbar color="new3">
     <ion-title color="new">
-      InstaReport - Register
-    </ion-title>
+      <p class="my-header"><ion-text color="new2">Insta</ion-text>Report - Register</p>
+      </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="home-page">
+<ion-content class="register-page">
+
+  
+  <ion-text color="new" class="ion-padding">
+    <h2> Account Information </h2>
+  </ion-text>
+
 
   <ion-item>
-    <ion-label position="stacked" >Email *</ion-label>
-    <ion-input type="email" placeholder="johnKing@gmail.com"></ion-input>
+    <ion-label position="floating" > First Name* </ion-label>
+    <ion-input type="text"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="stacked">Password *</ion-label>
+    <ion-label position="floating" > Last Name*</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" > Email *</ion-label>
+    <ion-input type="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" > Telephone*</ion-label>
+    <ion-input type="tel"></ion-input>
+  </ion-item>
+
+  <ion-text color="new" class="ion-padding">
+    <h2> Account Address </h2>
+  </ion-text>
+
+  <ion-item>
+    <ion-label position="floating" > Address</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" > EirCode *</ion-label>
+    <ion-input type="text"></ion-input>
+  </ion-item>
+
+
+  <ion-text color="new" class="ion-padding">
+    <h2> Account Password </h2>
+  </ion-text>
+
+  <ion-item>
+    <ion-label position="floating"> Password *</ion-label>
     <ion-input type="password" placeholder="********"></ion-input>
   </ion-item>
 
+  <br>
+  <br>
+  <br>
+
   <ion-list style="text-align:center">
-      <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/register']">REGISTER</ion-button>
+      <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/register']" class="ion-margin-top">REGISTER</ion-button>
       <br>
-      <ion-button color="light" size="large" class="custom ion-activated">LOG IN</ion-button>
+      <ion-button color="light" size="large" class="custom ion-activated" class="ion-margin-top">Exit</ion-button>
   </ion-list>
 
 </ion-content>
