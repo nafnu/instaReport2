@@ -62,10 +62,14 @@
   <br>
   <br>
 
-  <ion-list style="text-align:center">
-      <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/register']" class="ion-margin-top">REGISTER</ion-button>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="5">
+        <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/home']" class="ion-margin-top">REGISTER</ion-button>
       <br>
       <ion-button color="light" size="large" class="custom ion-activated" class="ion-margin-top">Exit</ion-button>
-  </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>

@@ -52,20 +52,15 @@ ion-item{
 
 }
 
+//Import font
 p.my-header{
+	font-family: 'Aclonica', sans-serif;
 	font-size: 2em;
 }
 
-//Import font
-.ion-title{
+ion-content{
 	font-family: 'Aclonica', sans-serif;
-	font-size:36px;
-
-}
-
-.ion-simple{
-	font-family: 'Aclonica', sans-serif;
-	font-size:36px;
+	font-size:16px;
 	
 }
 

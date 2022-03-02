@@ -32,6 +32,8 @@ import { SplashComponent } from './components/splash/splash.component';
 
 import { FormsModule } from '@angular/forms';
 
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 
 
 @NgModule({
@@ -57,7 +59,10 @@ import { FormsModule } from '@angular/forms';
     providePerformance(() => getPerformance()), provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage()),
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],
+  providers: [
+    Geolocation,
+    NativeGeocoder,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
