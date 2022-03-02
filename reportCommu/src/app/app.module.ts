@@ -4,9 +4,11 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+//firebase imports
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAnalytics, getAnalytics, ScreenTrackingService, UserTrackingService } from '@angular/fire/analytics';
@@ -19,6 +21,10 @@ import { providePerformance, getPerformance } from '@angular/fire/performance';
 import { provideRemoteConfig, getRemoteConfig } from '@angular/fire/remote-config';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 
+//Angular forms validation
+import {FormsModule,ReactiveFormsModule} from '@angular/forms';
+
+//component imports
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 import { LocationComponent } from './components/location/location.component';
@@ -30,8 +36,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SplashComponent } from './components/splash/splash.component';
 
-import { FormsModule } from '@angular/forms';
 
+//google maps imports
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 
@@ -51,7 +57,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
     SplashComponent
   ],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()), provideFirestore(() => getFirestore()),
