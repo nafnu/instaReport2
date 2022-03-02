@@ -12,7 +12,7 @@ import { RegisterComponent } from './components/register/register.component';
 import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate } from '@angular/fire/auth-guard';
 import { SplashComponent } from './components/splash/splash.component';
 
-const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['']);
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
