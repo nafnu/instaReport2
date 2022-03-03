@@ -1,0 +1,6 @@
+{
+  "appId": "com.instareport",
+  "appName": "instareport",
+  "webDir": "www",
+  "bundledWebRuntime": false
+}
