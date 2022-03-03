@@ -41,6 +41,10 @@ import { SplashComponent } from './components/splash/splash.component';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 
+//auth service
+import { AuthService} from './services/auth.service'
+
+
 
 @NgModule({
   declarations: [

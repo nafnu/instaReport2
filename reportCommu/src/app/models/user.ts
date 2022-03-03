@@ -1,8 +1,13 @@
 export interface User {
     userId: string;
-    userName: string;
+    userFname: string;
+    userLname: string;
     userEmail: string;
-    userAddress: string;
+    userStret: string;
+    userCity: string;
+    userState: string;
     userPhone: string;
+    userEircode: string;
+    userPassword: string;
     createdAt: number;
 }
