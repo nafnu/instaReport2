@@ -33,7 +33,7 @@
     "@ionic-native/geolocation": "^5.36.0",
     "@ionic-native/google-maps": "^5.5.0",
     "@ionic-native/native-geocoder": "^5.36.0",
-    "@ionic/angular": "^6.0.0",
+    "@ionic/angular": "^6.0.10",
     "@ionic/pwa-elements": "^3.1.1",
     "bootstrap": "^5.1.3",
     "cordova-plugin-geolocation": "^4.1.0",
