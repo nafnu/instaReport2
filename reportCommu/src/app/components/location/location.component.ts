@@ -38,12 +38,6 @@ export class LocationComponent implements OnInit {
     private localService: LocationService,
     public modalController: ModalController,
     public geolocation: Geolocation) { 
-
-        /*Get Current location*/
-        this.geolocation.getCurrentPosition().then((position) =>  {
-          this.position.lat = position.coords.latitude;
-          this.position.lng = position.coords.longitude;
-      });
      }
 
   ngOnInit(): void {
@@ -111,9 +105,29 @@ export class LocationComponent implements OnInit {
   }
 
   setInfoWindow(marker: any, title: string, subtitle: string){
-    //const contentString = '<div id="contentInsideMap">' +
-    
-  }
+    const contentString = '<div id="contentInsideMap">' +
+                          '<div>'+
+                          '</div>' +
+                          '<p style="font-wight: bold; margin-bottom: 5px;">'
+                          '<div id="bodyContent">' +
+                          '<p class="normal m-0">'
+                          + subtitle + '</p>' +
+                          '</div>' +
+                          '</div>';
+    this.infowindow.setContent(contentString);
+    this.infowindow.open(this.map, marker);
+}
+
+async mylocation(){
+  console.log('mylocation() click')
+
+        /*Get Current location*/
+        this.geolocation.getCurrentPosition().then((position) =>  {
+          this.position.lat = position.coords.latitude;
+          this.position.lng = position.coords.longitude;
+          this.addMarker(position);
+      });
+}
 
   
 
