@@ -1,7 +1,7 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
 import { LocationService } from '../../services/location.service';
 
@@ -14,6 +14,9 @@ declare var google: any;
 })
 export class LocationComponent implements OnInit {
   
+   //@ViewChild('map') divMap:ElementRef;
+   @ViewChild('Map', {static: false}) divMap: ElementRef;
+
   @Input() position = {
     lat:53.350140,
     lng:-6.266155
@@ -29,15 +32,19 @@ export class LocationComponent implements OnInit {
   infowindow: any; 
   positionSet: any;
   
-  @ViewChild('map') divMap:ElementRef;
-
-  title = 'angularCapacitor'; 
-  image = '';
 
   constructor(private renderer: Renderer2, 
     @Inject(DOCUMENT) private document, 
     private localService: LocationService,
-    public modalController: ModalController) {  }
+    public modalController: ModalController,
+    public geolocation: Geolocation) { 
+
+        /*Get Current location*/
+        this.geolocation.getCurrentPosition().then((position) =>  {
+          this.position.lat = position.coords.latitude;
+          this.position.lng = position.coords.longitude;
+      });
+     }
 
   ngOnInit(): void {
     this.init();
@@ -73,22 +80,47 @@ export class LocationComponent implements OnInit {
         draggable: true,
     });
 
-    // this.clickHandleEvent();
+    this.clickHandleEvent();
 
-    // this.infowindow = new google.maps.InfoWindow();
-    // if(this.label.title.length){
-    //   this.addMarker(position);
-    //   this.setInfoWindow(this.marker, this.label.title, this.label.subtitle);
-    // }
+    this.infowindow = new google.maps.InfoWindow();
+    if(this.label.title.length){
+      this.addMarker(position);
+      this.setInfoWindow(this.marker, this.label.title, this.label.subtitle);
+    }
 
   }
 
   clickHandleEvent(){
 
+    this.map.addLister('click', (event: any) => {
+      const position = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      this.addMarker(position);
+    });
+
   }
+
+  addMarker(position: any): void {
+    let latLng = new google.maps.LatLng(position.lat, position.lng);
+
+    this.marker.setPosition(latLng);
+    this.map.panTo(position);
+    this.positionSet = position;
+  }
+
+  setInfoWindow(marker: any, title: string, subtitle: string){
+    //const contentString
+  }
+
+  
 
 ///**** CAPTURE IMAGE */
   
+title = 'angularCapacitor'; 
+image = '';
+
 async captureImage(){
     const image = await Camera.getPhoto({
       quality: 90,
