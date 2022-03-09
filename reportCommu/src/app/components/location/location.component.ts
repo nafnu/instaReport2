@@ -5,7 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
 import { LocationService } from '../../services/location.service';
 
-declare var google: any;
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 
 @Component({
   selector: 'app-location',
@@ -14,120 +14,31 @@ declare var google: any;
 })
 export class LocationComponent implements OnInit {
   
-   //@ViewChild('map') divMap:ElementRef;
-   @ViewChild('Map', {static: false}) divMap: ElementRef;
-
-  @Input() position = {
-    lat:53.350140,
-    lng:-6.266155
-  };
+   @ViewChild('map') mapView:ElementRef;
   
-  label = { 
-    title:'My current location',
-    subtitle: 'Incident location'
+  constructor() { }
+
+  ngOnInit() { }
+
+  ionViewDidEnter(){
+    this.createMap();
   }
 
-  map: any;
-  marker: any;
-  infowindow: any; 
-  positionSet: any;
-  
+  createMap(){
+    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+    console.log("createMap", boundingRect)
 
-  constructor(private renderer: Renderer2, 
-    @Inject(DOCUMENT) private document, 
-    private localService: LocationService,
-    public modalController: ModalController,
-    public geolocation: Geolocation) { 
-     }
-
-  ngOnInit(): void {
-    this.init();
+    CapacitorGoogleMaps.create({
+      width: Math.round(boundingRect.width),
+      height: Math.round(boundingRect.height),
+      x: Math.round(boundingRect.x),
+      y: Math.round(boundingRect.y),
+      latitude: 53.350140,
+      longitude: -6.266155,
+      zoom: 5
+    })
   }
 
-  async init(){
-
-    this.localService.init(this.renderer, this.document).then( () => {
-      this.initMap();
-    }).catch( (err) => {
-      console.log(err);
-    });
-  }
-
-  initMap(){
-
-    const position = this.position;
-
-    let latLng = new google.maps.LatLng(position.lat, position.lng);
-
-    let mapOptions = {
-      center: latLng, 
-      zoom:15, 
-      disableDefaultUI: false, 
-      clickableIcons: false
-    };
-
-    this.map = new google.maps.Map(this.divMap.nativeElement.mapOptions);
-
-    this.marker = new google.maps.Marker({
-        map: this.map, 
-        animation: google.maps.Animation.DROP,
-        draggable: true,
-    });
-
-    this.clickHandleEvent();
-
-    this.infowindow = new google.maps.InfoWindow();
-    if(this.label.title.length){
-      this.addMarker(position);
-      this.setInfoWindow(this.marker, this.label.title, this.label.subtitle);
-    }
-
-  }
-
-  clickHandleEvent(){
-
-    this.map.addLister('click', (event: any) => {
-      const position = {
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng(),
-      };
-      this.addMarker(position);
-    });
-
-  }
-
-  addMarker(position: any): void {
-    let latLng = new google.maps.LatLng(position.lat, position.lng);
-
-    this.marker.setPosition(latLng);
-    this.map.panTo(position);
-    this.positionSet = position;
-  }
-
-  setInfoWindow(marker: any, title: string, subtitle: string){
-    const contentString = '<div id="contentInsideMap">' +
-                          '<div>'+
-                          '</div>' +
-                          '<p style="font-wight: bold; margin-bottom: 5px;">'
-                          '<div id="bodyContent">' +
-                          '<p class="normal m-0">'
-                          + subtitle + '</p>' +
-                          '</div>' +
-                          '</div>';
-    this.infowindow.setContent(contentString);
-    this.infowindow.open(this.map, marker);
-}
-
-async mylocation(){
-  console.log('mylocation() click')
-
-        /*Get Current location*/
-        this.geolocation.getCurrentPosition().then((position) =>  {
-          this.position.lat = position.coords.latitude;
-          this.position.lng = position.coords.longitude;
-          this.addMarker(position);
-      });
-}
 
   
 
