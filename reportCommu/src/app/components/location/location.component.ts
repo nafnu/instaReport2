@@ -111,7 +111,8 @@ export class LocationComponent implements OnInit {
   }
 
   setInfoWindow(marker: any, title: string, subtitle: string){
-    //const contentString
+    //const contentString = '<div id="contentInsideMap">' +
+    
   }
 
   
