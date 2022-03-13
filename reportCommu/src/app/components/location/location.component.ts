@@ -1,11 +1,11 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, ElementRef, Inject, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
-import { Geolocation } from '@capacitor/geolocation';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
 import { LocationService } from '../../services/location.service';
 
-declare var google: any;
+import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 
 @Component({
   selector: 'app-location',
@@ -14,81 +14,39 @@ declare var google: any;
 })
 export class LocationComponent implements OnInit {
   
-  @Input() position = {
-    lat:53.350140,
-    lng:-6.266155
-  };
+   @ViewChild('map') mapView:ElementRef;
   
-  label = { 
-    title:'My current location',
-    subtitle: 'Incident location'
+  constructor() { }
+
+  ngOnInit() { }
+
+  ionViewDidEnter(){
+    this.createMap();
   }
 
-  map: any;
-  marker: any;
-  infowindow: any; 
-  positionSet: any;
+  createMap(){
+    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+    console.log("createMap", boundingRect)
+
+    CapacitorGoogleMaps.create({
+      width: Math.round(boundingRect.width),
+      height: Math.round(boundingRect.height),
+      x: Math.round(boundingRect.x),
+      y: Math.round(boundingRect.y),
+      latitude: 53.350140,
+      longitude: -6.266155,
+      zoom: 5
+    })
+  }
+
+
   
-  @ViewChild('map') divMap:ElementRef;
-
-  title = 'angularCapacitor'; 
-  image = '';
-
-  constructor(private renderer: Renderer2, 
-    @Inject(DOCUMENT) private document, 
-    private localService: LocationService,
-    public modalController: ModalController) {  }
-
-  ngOnInit(): void {
-    this.init();
-  }
-
-  async init(){
-
-    this.localService.init(this.renderer, this.document).then( () => {
-      this.initMap();
-    }).catch( (err) => {
-      console.log(err);
-    });
-  }
-
-  initMap(){
-
-    const position = this.position;
-
-    let latLng = new google.maps.LatLng(position.lat, position.lng);
-
-    let mapOptions = {
-      center: latLng, 
-      zoom:15, 
-      disableDefaultUI: false, 
-      clickableIcons: false
-    };
-
-    this.map = new google.maps.Map(this.divMap.nativeElement.mapOptions);
-
-    this.marker = new google.maps.Marker({
-        map: this.map, 
-        animation: google.maps.Animation.DROP,
-        draggable: true,
-    });
-
-    // this.clickHandleEvent();
-
-    // this.infowindow = new google.maps.InfoWindow();
-    // if(this.label.title.length){
-    //   this.addMarker(position);
-    //   this.setInfoWindow(this.marker, this.label.title, this.label.subtitle);
-    // }
-
-  }
-
-  clickHandleEvent(){
-
-  }
 
 ///**** CAPTURE IMAGE */
   
+title = 'angularCapacitor'; 
+image = '';
+
 async captureImage(){
     const image = await Camera.getPhoto({
       quality: 90,
