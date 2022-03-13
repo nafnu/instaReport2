@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Auth } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -99,7 +103,14 @@ export class RegisterComponent implements OnInit {
 
   });
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private auth: Auth,
+    private loadingController: LoadingController,
+    //private alertController: AlertController, //need to do the function to confirm password
+    private authService: AuthService,
+    private router: Router
+    ) { }
 
   ngOnInit() {}
 
