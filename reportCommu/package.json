@@ -38,7 +38,7 @@
     "bootstrap": "^5.1.3",
     "cordova-plugin-geolocation": "^4.1.0",
     "cordova-plugin-nativegeocoder": "^3.4.1",
-    "firebase": "^9.6.7",
+    "firebase": "^9.6.8",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
