@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit {
 
   async logout(){
     await this.authService.logout();
-    this.router.navigateByUrl('/', { replaceUrl: true });
+    this.router.navigateByUrl('login', { replaceUrl: true });
   }
 }
