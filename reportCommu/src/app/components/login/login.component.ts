@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
+  goToRegister(){
+    this.router.navigateByUrl('/register', { replaceUrl: true });
+  }
+
   //Easy access for form fields
   get email() {
     return this.logingForm.get('email');
@@ -37,20 +41,6 @@ export class LoginComponent implements OnInit {
       email: ['', [Validators.required, Validators.pattern('^[a-zA-A-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$')]],
       password: ['', [Validators.required, Validators.pattern('(?=\\D*\\d)(?=[^a-z]*[a-z])(?=[^A-Z]*[A-Z]).{8,30}')]]
     });
-  }
-
-  async register(){ 
-    const loading = await this.alertController.create();
-    await loading.present();
-
-    const user = await this.authService.register(this.logingForm.value);
-    await loading.dismiss();
-
-    if (user){
-      this.router.navigateByUrl('/home', { replaceUrl: true });
-    }else{
-      this.showAlert('Registration failed', 'Please try again');
-    }
   }
 
   async login() {

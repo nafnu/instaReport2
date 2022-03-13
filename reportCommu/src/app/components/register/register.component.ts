@@ -4,6 +4,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
+import { Storage, ref, uploadString } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-register',
@@ -107,14 +108,44 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private auth: Auth,
     private loadingController: LoadingController,
-    //private alertController: AlertController, //need to do the function to confirm password
+    private alertController: AlertController, 
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private storage: Storage
     ) { }
+
+  goToSignIn(){
+    this.router.navigateByUrl('/login', { replaceUrl: true });
+  }
 
   ngOnInit() {}
 
+  async register(){ 
+    const loading = await this.alertController.create();
+    await loading.present();
+
+    const user = await this.authService.register(this.registrationForm.value);
+   // const storageRef = ref(this.storage, `users`);  
+    await loading.dismiss();
+
+    if (user){
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    }else{
+      this.showAlert('Registration failed', 'Please try again');
+    }
+  }
+
+  async showAlert(header, message){
+    const alert = await this.alertController.create({
+      header, 
+      message, 
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
+
   public submit(){
     console.log(this.registrationForm.value);
+    this.register();
   }
 }
