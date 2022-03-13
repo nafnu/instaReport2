@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from "@angular/forms";
+import { Router } from '@angular/router';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 
@@ -30,9 +33,13 @@ export class LoginComponent implements OnInit {
     ]
   }
 
-  constructor(public formBuilder: FormBuilder) {
-    
-  }
+  constructor(
+    public formBuilder: FormBuilder,
+    private loadingController: LoadingController, 
+    private alertController: AlertController, 
+    private authService: AuthService,
+    private router: Router
+    ) {}
 
 
   
