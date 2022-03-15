@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Storage, ref, uploadString } from '@angular/fire/storage';
+
+import { doc, docData, Firestore } from '@angular/fire/firestore'
+import { Auth } from '@angular/fire/auth';
+
 
 @Component({
   selector: 'app-register',
@@ -106,12 +109,14 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private auth: Auth,
     private loadingController: LoadingController,
     private alertController: AlertController, 
     private authService: AuthService,
     private router: Router,
-    private storage: Storage
+    //Save info connected to ID
+    private storage: Storage,
+    private firestore: Firestore,
+    private auth: Auth
     ) { }
 
   goToSignIn(){
@@ -125,7 +130,6 @@ export class RegisterComponent implements OnInit {
     await loading.present();
 
     const user = await this.authService.register(this.registrationForm.value);
-   // const storageRef = ref(this.storage, `users`);  
     await loading.dismiss();
 
     if (user){
@@ -135,6 +139,19 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  //get references at doc firedb
+  getUserProfile(){
+    const user = this.auth.currentUser;
+    const userDocRef = doc(this.firestore, `users/${user.uid}`);
+    return docData(userDocRef);
+  }
+
+  //upload info of registration
+
+  async uploadRegister(){
+
+  }
+  
   async showAlert(header, message){
     const alert = await this.alertController.create({
       header, 
