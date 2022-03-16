@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, deleteDoc, updateDoc, docData } from '@angular/fire/firestore';
+import { setDoc } from 'firebase/firestore';
 
 
 import { Observable, BehaviorSubject} from 'rxjs';
+import { User } from '../models/models';
 
 export interface Profile {
   uid?: string,
@@ -45,9 +47,9 @@ export class DbService {
     return addDoc(profileRef, profile);
   }
 
-  createDoc(data: any, path: string, id: string){
-    const group = doc(this.firestore, path);
-    return docData(group, {idField: 'idField' }) as Observable<Profile[]>;
+  createDoc(user: User): Promise<void>{
+    const group = doc(collection(this.firestore, 'users'));
+    return setDoc(group, user);
   }
 
 

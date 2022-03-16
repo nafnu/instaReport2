@@ -177,8 +177,8 @@ export class RegisterComponent implements OnInit {
       const id = res.user.uid;
       this.data.uid = id;
       this.data.password = null;
-      await this.db.createDoc(this.data, path, id);
-      this.showAlert('Record created!', 'The information is saved in the database.');
+      await this.db.createDoc(this.data);
+      this.showAlert('Ready Go!', 'Your profile was created');
       this.router.navigateByUrl('/home', { replaceUrl: true });
     }
 
