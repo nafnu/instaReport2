@@ -34,7 +34,7 @@ export class DbService {
   //Get all the information of one users by ID
   getProfileById(id): Observable<Profile[]> {
     const profileDocRef = doc(this.firestore, `users/${id}`);
-    return docData(profileDocRef, { idField: 'id' }) as Observable<Profile[]>;
+    return docData(profileDocRef, { idField: 'idField' }) as Observable<Profile[]>;
   }
 
   addProfile(profile: Profile){
@@ -42,10 +42,7 @@ export class DbService {
     return addDoc(profileRef, profile);
   }
 
-  deleteProfile(profile: Profile){
-    const profileDocRef = doc(this.firestore, `users/${profile.uid}`);
-    return deleteDoc(profileDocRef);
-  }
+
   
 
 
