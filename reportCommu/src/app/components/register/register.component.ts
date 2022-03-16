@@ -7,6 +7,7 @@ import { Storage, ref, uploadString } from '@angular/fire/storage';
 
 import { doc, docData, Firestore } from '@angular/fire/firestore'
 import { Auth } from '@angular/fire/auth';
+import { base64 } from '@firebase/util';
 
 
 @Component({
@@ -135,23 +136,18 @@ export class RegisterComponent implements OnInit {
     if (user){
       this.router.navigateByUrl('/home', { replaceUrl: true });
     }else{
-      this.showAlert('Registration failed', 'Please try again');
+      this.showAlert('Registration failed', 'Email already registed. Please try again');
     }
   }
 
-  //get references at doc firedb
-  getUserProfile(){
-    const user = this.auth.currentUser;
-    const userDocRef = doc(this.firestore, `users/${user.uid}`);
-    return docData(userDocRef);
-  }
+  //get references of the current user
+  // saveRegistration(){
+  //     const user = authService.getInstance().getCurrentUser();
+  // }
 
   //upload info of registration
+ 
 
-  async uploadRegister(){
-
-  }
-  
   async showAlert(header, message){
     const alert = await this.alertController.create({
       header, 
