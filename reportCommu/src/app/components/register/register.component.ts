@@ -157,7 +157,7 @@ export class RegisterComponent implements OnInit {
       this.data.password = null;
       await this.db.createDoc(this.data);
       this.showAlert('Ready Go!', 'Your profile was created');
-      this.router.navigateByUrl('/home', { replaceUrl: true });
+      this.router.navigateByUrl('/home', { replaceUrl: true }); //redirect to home page
     }
 
   }

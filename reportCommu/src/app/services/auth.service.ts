@@ -18,10 +18,12 @@ export class AuthService {
 
   constructor(private auth: Auth) { }
 
+  //Allow to register unique users by emails and password. With unique ID ***Feature security
   async register(data: User){
     return await createUserWithEmailAndPassword(this.auth,data.email, data.password);
   }
 
+  //Allow to login unique users by emails and password. ***Feature security
   async login(email:string, password:string){
     return await signInWithEmailAndPassword(this.auth, email, password)
   }
