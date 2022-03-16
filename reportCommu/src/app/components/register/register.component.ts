@@ -9,7 +9,7 @@ import { DbService } from '../../services/db.service'
 import { doc, docData, Firestore } from '@angular/fire/firestore'
 import { Auth } from '@angular/fire/auth';
 import { base64 } from '@firebase/util';
-
+import { User } from 'src/app/models/models';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +17,19 @@ import { base64 } from '@firebase/util';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
+
+  data: User = {
+    uid: null,
+    lname: null,
+    fname: null,
+    email: null,
+    phone: null, 
+    city: null,
+    state: null,
+   street: null,
+   eircode:null,
+   password: null
+  }
 
   get fname(){
     return this.registrationForm.get('fname');
@@ -122,35 +135,56 @@ export class RegisterComponent implements OnInit {
     private auth: Auth
     ) { }
 
+
   goToSignIn(){
     this.router.navigateByUrl('/login', { replaceUrl: true });
   }
 
   ngOnInit() {}
 
-  async register(){ 
-    const loading = await this.alertController.create();
-    await loading.present();
+  // async register(){ 
+  //   const loading = await this.alertController.create();
+  //   await loading.present();
 
-    const user = await this.authService.register(this.registrationForm.value);
-    await loading.dismiss();
+  //   const user = await this.authService.register(this.registrationForm.value);
+  //   await loading.dismiss();
 
-    if (user){
+  //   //get current user id
+  //   const uid = await this.auth.currentUser.uid;
+  //   console.log(uid);
 
-      this.router.navigateByUrl('/home', { replaceUrl: true });
-    }else{
-      this.showAlert('Registration failed', 'Email already registed. Please try again');
-    }
-  }
+   
 
+  //   if (user){
 
-  //get references of the current user
-  // saveRegistration(){
-  //     const user = authService.getInstance().getCurrentUser();
+  //     this.router.navigateByUrl('/home', { replaceUrl: true });
+  //   }else{
+  //     this.showAlert('Registration failed', 'Email already registed. Please try again');
+  //   }
   // }
 
-  //upload info of registration
+
+  async register(){
+    this.data = await this.registrationForm.value;
+    console.log('data ->', this.data); //test the work the form
+
+    const res = await this.authService.register(this.data).catch( error => {
+      this.showAlert('Registration failed', 'Email already registed. Please try again with another email.');
+    })
+    if(res){
+      console.log('great - works'); //check if create authentification
+      const path = 'users';
+      const id = res.user.uid;
+      this.data.uid = id;
+      this.data.password = null;
+      await this.db.createDoc(this.data, path, id);
+      this.showAlert('Record created!', 'The information is saved in the database.');
+      this.router.navigateByUrl('/home', { replaceUrl: true });
+    }
+
+  }
  
+
 
   async showAlert(header, message){
     const alert = await this.alertController.create({
@@ -161,8 +195,9 @@ export class RegisterComponent implements OnInit {
     await alert.present();
   }
 
+  
+
   public submit(){
-    console.log(this.registrationForm.value);
     this.register();
   }
 }

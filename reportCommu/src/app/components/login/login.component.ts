@@ -15,6 +15,11 @@ export class LoginComponent implements OnInit {
  
   logingForm: FormGroup;
 
+  credentials = {
+    email: null, 
+    password: null
+  }
+
   constructor(
     public formBuilder: FormBuilder,
     private loadingController: LoadingController,
@@ -43,19 +48,35 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  async login() {
-    const loading = await this.alertController.create();
-    await loading.present();
+  // async login() {
+  //   const loading = await this.alertController.create();
+  //   await loading.present();
 
-    const user = await this.authService.login(this.logingForm.value);
-    await loading.dismiss();
+  //   const user = await this.authService.login(this.logingForm.value);
+  //   await loading.dismiss();
 
-    if (user){
+  //   if (user){
+  //     this.router.navigateByUrl('/home', { replaceUrl: true });
+  //   }else{
+  //     this.showAlert('Login failed', 'Error on password or email. Please try again');
+  //   }
+  //  }
+
+  async login(){
+    this.credentials = await this.logingForm.value;
+    console.log('credentials ->', this.credentials); //test the work the form
+
+    const res = await this.authService.login(this.credentials.email, this.credentials.password).catch( error => {
+      this.showAlert('Login failed', 'Password or email error. Please try again');
+    })
+    if (res){
+      console.log('res ->', res);
+      this.showAlert('Login successful', 'Welcome back');
       this.router.navigateByUrl('/home', { replaceUrl: true });
-    }else{
-      this.showAlert('Login failed', 'Please try again');
     }
-   }
+
+
+  }
 
   async showAlert(header, message){
     const alert = await this.alertController.create({
@@ -79,9 +100,7 @@ export class LoginComponent implements OnInit {
 
 
   public submitLog() {
-    console.log(this.logingForm.value); //test the work the form
-
-    this.login();
+      this.login();
   }
 
 

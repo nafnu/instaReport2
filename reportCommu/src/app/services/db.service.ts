@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { user } from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
 import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, deleteDoc, updateDoc, docData } from '@angular/fire/firestore';
+
 
 import { Observable, BehaviorSubject} from 'rxjs';
 
@@ -20,9 +21,11 @@ export interface Profile {
 })
 export class DbService {
 
- 
+  private users: Observable<Profile[]>
 
-  constructor(private firestore: Firestore) { }
+  constructor(private firestore: Firestore, private auth: Auth ) {  }
+
+ 
 
 
   //Get all the information of the users
@@ -40,6 +43,11 @@ export class DbService {
   addProfile(profile: Profile){
     const profileRef = collection(this.firestore, 'users');
     return addDoc(profileRef, profile);
+  }
+
+  createDoc(data: any, path: string, id: string){
+    const group = doc(this.firestore, path);
+    return docData(group, {idField: 'idField' }) as Observable<Profile[]>;
   }
 
 
