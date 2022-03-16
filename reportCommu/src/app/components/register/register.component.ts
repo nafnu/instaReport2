@@ -5,6 +5,7 @@ import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { Storage, ref, uploadString } from '@angular/fire/storage';
 
+import { DbService } from '../../services/db.service'
 import { doc, docData, Firestore } from '@angular/fire/firestore'
 import { Auth } from '@angular/fire/auth';
 import { base64 } from '@firebase/util';
@@ -115,6 +116,7 @@ export class RegisterComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     //Save info connected to ID
+    private db: DbService,
     private storage: Storage,
     private firestore: Firestore,
     private auth: Auth
@@ -134,11 +136,13 @@ export class RegisterComponent implements OnInit {
     await loading.dismiss();
 
     if (user){
+
       this.router.navigateByUrl('/home', { replaceUrl: true });
     }else{
       this.showAlert('Registration failed', 'Email already registed. Please try again');
     }
   }
+
 
   //get references of the current user
   // saveRegistration(){
