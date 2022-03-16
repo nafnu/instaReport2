@@ -9,6 +9,7 @@ import {
   signOut 
 } from '@angular/fire/auth';
 import { User } from '../models/models';
+import { authState } from 'rxfire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,12 @@ export class AuthService {
 
   //Allow to login unique users by emails and password. ***Feature security
   async login(email:string, password:string){
-    return await signInWithEmailAndPassword(this.auth, email, password)
+    return await signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  //Monitoring user - This method gets invoked in the UI thread on changes in the authentication state.
+ stateUser(){
+   return this.auth.onAuthStateChanged;
   }
 
   logout(){
