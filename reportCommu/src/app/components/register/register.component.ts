@@ -142,34 +142,12 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {}
 
-  // async register(){ 
-  //   const loading = await this.alertController.create();
-  //   await loading.present();
-
-  //   const user = await this.authService.register(this.registrationForm.value);
-  //   await loading.dismiss();
-
-  //   //get current user id
-  //   const uid = await this.auth.currentUser.uid;
-  //   console.log(uid);
-
-   
-
-  //   if (user){
-
-  //     this.router.navigateByUrl('/home', { replaceUrl: true });
-  //   }else{
-  //     this.showAlert('Registration failed', 'Email already registed. Please try again');
-  //   }
-  // }
-
-
   async register(){
     this.data = await this.registrationForm.value;
     console.log('data ->', this.data); //test the work the form
 
     const res = await this.authService.register(this.data).catch( error => {
-      this.showAlert('Registration failed', 'Email already registed. Please try again with another email.');
+      this.showAlert('Registration failed', 'Email already registed or missing information. Please try again with another email.');
     })
     if(res){
       console.log('great - works'); //check if create authentification
@@ -184,8 +162,6 @@ export class RegisterComponent implements OnInit {
 
   }
  
-
-
   async showAlert(header, message){
     const alert = await this.alertController.create({
       header, 
@@ -194,9 +170,7 @@ export class RegisterComponent implements OnInit {
     });
     await alert.present();
   }
-
   
-
   public submit(){
     this.register();
   }

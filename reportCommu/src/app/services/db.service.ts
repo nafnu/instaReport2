@@ -27,8 +27,11 @@ export class DbService {
 
   constructor(private firestore: Firestore, private auth: Auth ) {  }
 
- 
-
+  //Add user - with authentificacion email/password - also add as collection with uid
+  createDoc(user: User): Promise<void>{
+    const group = doc(collection(this.firestore, 'users'));
+    return setDoc(group, user);
+  }
 
   //Get all the information of the users
   getProfile(): Observable<Profile[]> {
@@ -47,11 +50,7 @@ export class DbService {
     return addDoc(profileRef, profile);
   }
 
-  createDoc(user: User): Promise<void>{
-    const group = doc(collection(this.firestore, 'users'));
-    return setDoc(group, user);
-  }
-
+ 
 
   
 
