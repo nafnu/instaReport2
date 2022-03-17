@@ -2,7 +2,7 @@
     {
         "id": 1,
         "incident": "Community",
-        "type":{
+        "options":{
             "a": "Accessibility",
             "b": "General Request ",
             "c": "Street Library Problems"
@@ -11,7 +11,7 @@
     {
         "id": 2,
         "incident": "Abandoned trolleys/bikes",
-        "type":{
+        "options":{
             "a": "ALDI - Abandoned Trolley",
             "b": "TESCO - Abandoned Trolley ",
             "c": "Bike abandoned"
@@ -20,7 +20,7 @@
     {
         "id": 3,
         "incident": "Noise & Pollution",
-        "type":{
+        "options":{
             "a": "Noise - Construction",
             "b": "Noise - Animal ",
             "c": "Pollution - General"
@@ -29,7 +29,7 @@
     {
         "id": 4,
         "incident": "Parking & Cars",
-        "type":{
+        "options":{
             "a": "Parking - Illegal",
             "b": "Parking - Disabled ",
             "c": "Parking and Cars - General"
@@ -38,7 +38,7 @@
     {
         "id": 5,
         "incident": "Graffiti & Vandalism",
-        "type":{
+        "options":{
             "a": "Fire Hydrant Damage",
             "b": "Graffiti - Public Property ",
             "c": "Vandalism - General"
@@ -47,7 +47,7 @@
     {
         "id": 6,
         "incident": "Pavement & Footpath",
-        "type":{
+        "options":{
             "a": "Accessibility",
             "b": "Pavement - Damaged",
             "c": "Pavement - General"
@@ -56,7 +56,7 @@
     {
         "id": 7,
         "incident": "Rubbish & Bins",
-        "type":{
+        "options":{
             "a": "Dumped Tyres",
             "b": "Litter ",
             "c": "Rubbish and Bins - General"
@@ -65,7 +65,7 @@
     {
         "id": 8,
         "incident": "Trees",
-        "type":{
+        "options":{
             "a": "Fallen Tree",
             "b": "Overgrown Vegetation ",
             "c": "Tree - General"
@@ -74,7 +74,7 @@
     {
         "id": 9,
         "incident": "Potholes & Broke lights",
-        "type":{
+        "options":{
             "a": "Pothole Report",
             "b": "Damaged Street Light",
             "c": "Street Light Outage"

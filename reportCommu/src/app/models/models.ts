@@ -11,7 +11,14 @@ export interface User {
    password: string
   }
 
-  export interface incidentType{
+  export interface type{
       id: number;
       incident: string
+      options: {
+          a: string, 
+          b: string, 
+          c: string
+        }
   }
+
+
