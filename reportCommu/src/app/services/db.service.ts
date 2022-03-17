@@ -28,26 +28,7 @@ export class DbService {
     return collectionData(typeRef, { idField: 'id'}) as Observable<incidentType[]>;
   }
 
-  // //Get all the information of the users
-  // getProfile(): Observable<Profile[]> {
-  //   const profileRef = collection(this.firestore, 'users');
-  //   return collectionData(profileRef, { idField: 'id' }) as Observable<Profile[]>;
-  // }
-
-  // //Get all the information of one users by ID
-  // getProfileById(id): Observable<Profile[]> {
-  //   const profileDocRef = doc(this.firestore, `users/${id}`);
-  //   return docData(profileDocRef, { idField: 'idField' }) as Observable<Profile[]>;
-  // }
-
-  // addProfile(profile: Profile){
-  //   const profileRef = collection(this.firestore, 'users');
-  //   return addDoc(profileRef, profile);
-  // }
-
- 
-
-  
+    
 
 
 }
