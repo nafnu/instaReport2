@@ -10,3 +10,8 @@ export interface User {
    eircode:string;
    password: string
   }
+
+  export interface incidentType{
+      id: number;
+      incident: string
+  }

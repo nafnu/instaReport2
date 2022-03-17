@@ -5,25 +5,14 @@ import { setDoc } from 'firebase/firestore';
 
 
 import { Observable, BehaviorSubject} from 'rxjs';
-import { User } from '../models/models';
-
-export interface Profile {
-  uid?: string,
-  lname: string,
-  fname: string,
-  phone: number, 
-  city: string,
- street: string,
- eircode:string
-}
-
+import { incidentType, User } from '../models/models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DbService {
 
-  private users: Observable<Profile[]>
+  
 
   constructor(private firestore: Firestore, private auth: Auth ) {  }
 
@@ -33,22 +22,28 @@ export class DbService {
     return setDoc(group, user);
   }
 
-  //Get all the information of the users
-  getProfile(): Observable<Profile[]> {
-    const profileRef = collection(this.firestore, 'users');
-    return collectionData(profileRef, { idField: 'id' }) as Observable<Profile[]>;
+  
+  getType(): Observable<incidentType[]> {
+    const typeRef = collection(this.firestore, 'incidentType');
+    return collectionData(typeRef, { idField: 'id'}) as Observable<incidentType[]>;
   }
 
-  //Get all the information of one users by ID
-  getProfileById(id): Observable<Profile[]> {
-    const profileDocRef = doc(this.firestore, `users/${id}`);
-    return docData(profileDocRef, { idField: 'idField' }) as Observable<Profile[]>;
-  }
+  // //Get all the information of the users
+  // getProfile(): Observable<Profile[]> {
+  //   const profileRef = collection(this.firestore, 'users');
+  //   return collectionData(profileRef, { idField: 'id' }) as Observable<Profile[]>;
+  // }
 
-  addProfile(profile: Profile){
-    const profileRef = collection(this.firestore, 'users');
-    return addDoc(profileRef, profile);
-  }
+  // //Get all the information of one users by ID
+  // getProfileById(id): Observable<Profile[]> {
+  //   const profileDocRef = doc(this.firestore, `users/${id}`);
+  //   return docData(profileDocRef, { idField: 'idField' }) as Observable<Profile[]>;
+  // }
+
+  // addProfile(profile: Profile){
+  //   const profileRef = collection(this.firestore, 'users');
+  //   return addDoc(profileRef, profile);
+  // }
 
  
 
