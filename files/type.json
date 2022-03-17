@@ -10,7 +10,7 @@
     },
     {
         "id": 2,
-        "incident": "Abandoned trolleys/bikes",
+        "incident": "Abandoned trolleys or bikes",
         "options":{
             "a": "ALDI - Abandoned Trolley",
             "b": "TESCO - Abandoned Trolley ",
@@ -19,7 +19,7 @@
     },
     {
         "id": 3,
-        "incident": "Noise & Pollution",
+        "incident": "Noise or Pollution",
         "options":{
             "a": "Noise - Construction",
             "b": "Noise - Animal ",
@@ -28,7 +28,7 @@
     },
     {
         "id": 4,
-        "incident": "Parking & Cars",
+        "incident": "Parking or Cars",
         "options":{
             "a": "Parking - Illegal",
             "b": "Parking - Disabled ",
@@ -37,7 +37,7 @@
     },
     {
         "id": 5,
-        "incident": "Graffiti & Vandalism",
+        "incident": "Graffiti or Vandalism",
         "options":{
             "a": "Fire Hydrant Damage",
             "b": "Graffiti - Public Property ",
@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "incident": "Pavement & Footpath",
+        "incident": "Pavement or Footpath",
         "options":{
             "a": "Accessibility",
             "b": "Pavement - Damaged",
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "incident": "Rubbish & Bins",
+        "incident": "Rubbish or Bins",
         "options":{
             "a": "Dumped Tyres",
             "b": "Litter ",
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "incident": "Potholes & Broke lights",
+        "incident": "Potholes or Broke lights",
         "options":{
             "a": "Pothole Report",
             "b": "Damaged Street Light",

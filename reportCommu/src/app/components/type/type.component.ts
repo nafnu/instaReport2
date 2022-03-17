@@ -1,9 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { type, User } from 'src/app/models/models';
+import { Component, OnInit, Input } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DbService} from 'src/app/services/db.service';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-type',
@@ -19,10 +18,10 @@ export class TypeComponent implements OnInit {
       console.log(res);
       this.types = res;
     });
+
   }
 
   ngOnInit() { }
 
   openType(incident){}
-  
 }

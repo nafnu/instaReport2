@@ -5,7 +5,31 @@ import { Auth } from '@angular/fire/auth';
 import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, deleteDoc, updateDoc, docData } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
 
-import { type, User } from '../models/models';
+
+
+export interface Type{
+  id: number;
+  incident: string
+  options: {
+      a: string, 
+      b: string, 
+      c: string
+    }
+}
+
+export interface User {
+  uid?: string;
+  lname: string;
+  fname: string;
+  email: string;
+  phone: number; 
+  city: string;
+  state: string;
+ street: string;
+ eircode:string;
+ password: string
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +45,15 @@ export class DbService {
   }
 
   //Get incident type form the Firebase
-  getType(): Observable<type[]> {
+  getType(): Observable<Type[]> {
     const typeRef = collection(this.firestore, 'type');
-    return collectionData(typeRef, { idField: 'id'}) as Observable<type[]>;
+    return collectionData(typeRef, { idField: 'idField'}) as Observable<Type[]>;
   }
 
    //Get incident type by Id form the Firebase
-  getTypeById(id): Observable<type> {
+  getTypeById(id): Observable<Type> {
     const typeRef = doc(this.firestore, `type/${id}`);
-    return docData(typeRef, { idField: 'id'}) as Observable<type>;
+    return docData(typeRef, { idField: 'idField'}) as Observable<Type>;
   }
 
 
