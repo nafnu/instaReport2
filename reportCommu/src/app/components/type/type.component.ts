@@ -1,8 +1,9 @@
-import { Component, OnInit, ChangeDetectorRef,} from '@angular/core';
-import { incidentType } from 'src/app/models/models';
+import { Component, OnInit } from '@angular/core';
+import { type, User } from 'src/app/models/models';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { DbService} from 'src/app/services/db.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-type',
@@ -11,19 +12,17 @@ import { DbService} from 'src/app/services/db.service';
 })
 export class TypeComponent implements OnInit {
 
-  incidentType: incidentType[] = [];
-  selectType: string = ''; 
+  types = [];
 
-  constructor(private db: DbService, private alertCtrl: AlertController,private cd: ChangeDetectorRef) { 
-    this.db.getType();
+  constructor(private db: DbService, public router: Router, private alertContrl: AlertController) { 
+    this.db.getType().subscribe(res => {
+      console.log(res);
+      this.types = res;
+    });
   }
 
-  ngOnInit() {
+  ngOnInit() { }
 
-  }
-
+  openType(incident){}
   
-  saveIncident(){
-
-  }
 }
