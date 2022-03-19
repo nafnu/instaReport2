@@ -2,10 +2,13 @@ import { Component, OnInit, Input, Renderer2, ElementRef, Inject, ViewChild } fr
 import { GooglemapsService } from './googlemaps.service';
 import { ModalController } from '@ionic/angular';
 //import { Plugins } from 'protractor/built/plugins';
-import { Plugin } from '@capacitor/core' 
+import { Plugin, Plugins } from '@capacitor/core'
 import { DOCUMENT } from '@angular/common';
 
-//const {Geolocation} = Plugins;
+import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+//import { Geolocation } from '@ionic-native/geolocation/ngx';   //** this is for phone */
+
+// const {Geolocation} = Plugins; //@deprecated //**** I FOUND THE UPDATED DOC ON IONIC */
 declare var google: any;
 
 @Component({
@@ -23,8 +26,8 @@ export class GooglemapsComponent implements OnInit {
 
   //Message in the marker of infoWindow
   label = {
-    tittle:'Location', 
-    subtitle:'The location of the incident'
+    tittle: 'Location',
+    subtitle: 'The location of the incident'
   };
 
   map: any;
@@ -35,26 +38,118 @@ export class GooglemapsComponent implements OnInit {
   @ViewChild('map') divMap: ElementRef; //refer were it will be open the map
 
   constructor(private renderer: Renderer2,
-    @Inject(DOCUMENT)private document, 
-    private googlemapsService: GooglemapsService, 
-    public modalController: ModalController) { }
+    @Inject(DOCUMENT) private document,
+    private googlemapsService: GooglemapsService,
+    public modalController: ModalController,
+    private geolocation: Geolocation) { }
 
   ngOnInit(): void {
     this.init();
   }
 
-  async init(){
-    this.googlemapsService.init(this.renderer, this.document).then( () => {
+  async init() {
+    this.googlemapsService.init(this.renderer, this.document).then(() => {
       this.initMap();
-    }).catch( (err) => {
+    }).catch((err) => {
       console.log(err);
     });
   }
 
-  initMap(){
+  initMap() {
     const position = this.position;
 
     let latLng = new google.maps.LatLng(position.lat, position.lng);
-    
+
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      disableDefaultUI: true,
+      clickableIcons: false,
+    };
+
+    this.map = new google.map.Map(this.divMap.nativeElement, mapOptions);
+
+    this.marker = new google.map.Marker({
+      map: this.map,
+      animation: google.maps.Animation.DROP,
+      draggable: true, //posibilite to move the marker in the map in differents spotts
+    });
+
+    this.clickHandleEvent();
+
+    this.infowindow = new google.maps.InfoWindow();
+
+    if (this.label.tittle.length) {
+      this.addMarker(position);
+      this.setInfoWindow(this.marker, this.label.tittle, this.label.subtitle)
+    }
+
+
+  }
+
+  clickHandleEvent() {
+    this.map.addLister('click', (event: any) => {
+      const position = {
+        lat: event.latLng.lat(),
+        lng: event.latLng.lng(),
+      };
+      this.addMarker(position); //save the position of the marker
+    });
+  }
+
+  addMarker(position: any): void {
+    let latLng = new google.maps.LatLng(position.lat, position.lng);
+
+    this.marker.setPosition(latLng);
+    this.map.panTo(position);
+    this.positionSet = position; //save the location in a variable
+  }
+
+  //the small window how discribe the marker
+  setInfoWindow(marker: any, title: string, subtittle: string) {
+    const contentString = '<div id="contentInsideMap">' +
+      '<div>' +
+      '</div>' +
+      '<p style="font-weight:bold, margin-bottom: 5px;">' + title + '</p>' +
+      '<div id="bodyContent">' +
+      '<p class="normal m-0">' +
+      subtittle + '</p>' +
+      '</div>' +
+      '</div>';
+    this.infowindow.setContent(contentString);
+    this.infowindow.open(this.map, marker);
+  }
+
+  async mylocation() {
+
+    console.log('mylocation() click');
+
+    this.geolocation.getCurrentPosition().then((res) => {
+
+      console.log('mylocation() => get' , res); //print if it is working
+
+      const position = {
+        lat: res.coords.latitude,
+        lng: res.coords.longitude,
+      }
+      this.addMarker(position);
+
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+
+    let watch = this.geolocation.watchPosition();
+    watch.subscribe((error) => {
+      // data can be a set of coordinates, or an error (if an error occurred).
+      // data.coords.latitude
+      // data.coords.longitude
+      console.log('Error getting location', error);
+    });
+
+  }
+
+  aceptar(){
+    console.log('click aceptar -> ', this.positionSet);
+    this.modalController.dismiss({pos: this.positionSet});
   }
 }

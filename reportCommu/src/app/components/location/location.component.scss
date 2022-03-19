@@ -1,7 +1,23 @@
-#map{
-    display: block;
-    height: 15px;
-    width: 30vh;
-    margin: 20px;
-    border: 1px solid black;
+// #map{
+//     display: block;
+//     height: 15px;
+//     width: 30vh;
+//     margin: 20px;
+//     border: 1px solid black;
+// }
+
+ion-icon {
+    color: green;
+}
+
+.center {
+    text-align: right;
+    font-weight: 500;
+	font-size: 1.2em;
+	font-family: 'Aclonica', sans-serif;
+    color: #0A905D;
+}
+
+.color{
+    background-color:chartreuse;
 }

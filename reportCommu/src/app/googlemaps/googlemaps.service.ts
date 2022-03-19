@@ -39,7 +39,7 @@ export class GooglemapsService {
       }
 
       if(this.apiKey){
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.apiKey
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + this.apiKey + '&callback=mapInit';
       } else {
         script.src = 'https://maps.googleapis.com/maps/api/js?callback=mapInit';
       }

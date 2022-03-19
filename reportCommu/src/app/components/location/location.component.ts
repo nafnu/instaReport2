@@ -5,7 +5,10 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
 import { LocationService } from '../../services/location.service';
 
+import { Report } from 'src/app/models/models';
+
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+import { GooglemapsComponent } from 'src/app/googlemaps/googlemaps.component';
 
 @Component({
   selector: 'app-location',
@@ -14,9 +17,20 @@ import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-n
 })
 export class LocationComponent implements OnInit {
   
+  report: Report = {
+    uid: '',
+    idRep: '',
+    location: null,
+    imagen: null,
+    idfield: '', 
+    description: '',
+    authority: '',
+}
+
+
    @ViewChild('map') mapView:ElementRef;
   
-  constructor() { }
+  constructor(public modalController: ModalController,) { }
 
   ngOnInit() { }
 
@@ -39,6 +53,33 @@ export class LocationComponent implements OnInit {
 //       zoom: 5
 //     })
 //   }
+
+async addLocation(){
+
+  const ubicacion = this.report.location;
+  let position = {
+    lat: 53.34807,
+    lng: -6.24827
+  };
+  if(ubicacion !== null){
+    position = ubicacion;
+  }
+
+  const modalAdd = await this.modalController.create({
+    component: GooglemapsComponent,
+    mode: 'ios',
+    swipeToClose: true, 
+    componentProps: {position} 
+  });
+
+  const {data} = await modalAdd.onWillDismiss();
+
+  if(data){
+    console.log('data ->', data);
+    this.report.location = data.pos;
+    console.log('this.report ->', this.report);
+  }
+}
 
 
   
