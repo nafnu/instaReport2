@@ -24,4 +24,9 @@ export class TypeComponent implements OnInit {
   ngOnInit() { }
 
   openType(incident){}
+
+  // Manage propagation in a much more efficient way and only update the content inside of the component rather than re-create the component altogether
+  trackIncident(index: number, itemObject: any) {
+    return itemObject.id;
+  }
 }
