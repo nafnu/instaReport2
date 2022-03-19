@@ -20,24 +20,25 @@ export class LocationComponent implements OnInit {
 
   ngOnInit() { }
 
-  ionViewDidEnter(){
-    this.createMap();
-  }
+// ///**** GEOLOCATION WITH ERROR */
+//   ionViewDidEnter(){
+//     this.createMap();
+//   }
 
-  createMap(){
-    const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-    console.log("createMap", boundingRect)
+//   createMap(){
+//     const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+//     console.log("createMap", boundingRect)
 
-    CapacitorGoogleMaps.create({
-      width: Math.round(boundingRect.width),
-      height: Math.round(boundingRect.height),
-      x: Math.round(boundingRect.x),
-      y: Math.round(boundingRect.y),
-      latitude: 53.350140,
-      longitude: -6.266155,
-      zoom: 5
-    })
-  }
+//     CapacitorGoogleMaps.create({
+//       width: Math.round(boundingRect.width),
+//       height: Math.round(boundingRect.height),
+//       x: Math.round(boundingRect.x),
+//       y: Math.round(boundingRect.y),
+//       latitude: 53.350140,
+//       longitude: -6.266155,
+//       zoom: 5
+//     })
+//   }
 
 
   

@@ -25,38 +25,37 @@
           <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
         </ion-list>
 
-
-        <br>
-        <ion-text color="new">
-          <h2>Where's the incident located?</h2>
-        </ion-text>
-
-        <br>
-
-        <ion-searchbar></ion-searchbar>
-
-        <br>
-
-        <div id="map" #map style="width: auto; height: 550px; position: relative; overflow: hidden;"></div>
-
-
-        <ion-text color="new">
-          <h2>Or</h2>
-        </ion-text>
-
-     
-          <ion-button size="large" shape="round"  color="medium" class="custom ion-activated ion-focused" (click)="captureImage()">
-               Use location of photo<br> 
-          </ion-button>
-       
-        
-
-        <div class="nextPage">
-          <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/type']">NEXT
-          </ion-button>
-        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <br>
+  <ion-text color="new">
+    <h2>Where's the incident located?</h2>
+  </ion-text>
+
+  <!-- <br>
+  <ion-searchbar color="light"></ion-searchbar>
+  <br>
+
+  <div id="map" #map style="width: auto; height: 550px; position: relative; overflow: hidden;"></div> -->
+
+
+  <ion-text color="new">
+    <h2>Or</h2>
+  </ion-text>
+
+
+  <ion-button size="large" shape="round" color="medium" class="custom ion-activated ion-focused"
+    (click)="captureImage()">
+    Use location of photo<br>
+  </ion-button>
+
+
+
+  <div class="nextPage">
+    <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/type']">NEXT
+    </ion-button>
+  </div>
+
 
 </ion-content>
