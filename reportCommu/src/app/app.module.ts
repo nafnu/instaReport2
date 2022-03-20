@@ -40,9 +40,11 @@ import { SplashComponent } from './components/splash/splash.component';
 //google maps imports
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
+import { GooglemapsComponent } from './components/googlemaps/googlemaps.component';
 
 //auth service
 import { AuthService} from './services/auth.service'
+
 
 
 
@@ -58,7 +60,8 @@ import { AuthService} from './services/auth.service'
     LoginComponent,
     RegisterComponent,
     MenuComponent,
-    SplashComponent
+    SplashComponent,
+    GooglemapsComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,

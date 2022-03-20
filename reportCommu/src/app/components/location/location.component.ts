@@ -3,7 +3,7 @@ import { Component, ElementRef, Inject, Input, OnInit, Renderer2, ViewChild } fr
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
-import { LocationService } from '../../services/location.service';
+import { GooglemapsService } from 'src/app/components/googlemaps/googlemaps.service';
 
 import { Report } from 'src/app/models/models';
 
@@ -30,7 +30,7 @@ export class LocationComponent implements OnInit {
 
    @ViewChild('map') mapView:ElementRef;
   
-  constructor(public modalController: ModalController,) { }
+  constructor(public modalCtrl: ModalController,) { }
 
   ngOnInit() { }
 
@@ -56,29 +56,32 @@ export class LocationComponent implements OnInit {
 
 async addLocation(){
 
-  const ubicacion = this.report.location;
-  let position = {
-    lat: 53.34807,
-    lng: -6.24827
-  };
-  if(ubicacion !== null){
-    position = ubicacion;
-  }
+  // const ubicacion = this.report.location;
+  // let position = {
+  //   lat: 53.34807,
+  //   lng: -6.24827
+  // };
+  // if(ubicacion !== null){
+  //   position = ubicacion;
+  // }
 
-  const modalAdd = await this.modalController.create({
+  const modalAdd = await this.modalCtrl.create({
     component: GooglemapsComponent,
-    mode: 'ios',
-    swipeToClose: true, 
-    componentProps: {position} 
+    cssClass:'small-modal'
+    // mode: 'ios',
+    // swipeToClose: true, 
+    // componentProps: {position} 
   });
 
-  const {data} = await modalAdd.onWillDismiss();
+  await modalAdd.present();
 
-  if(data){
-    console.log('data ->', data);
-    this.report.location = data.pos;
-    console.log('this.report ->', this.report);
-  }
+  // const {data} = await modalAdd.onWillDismiss();
+
+  // if(data){
+  //   console.log('data ->', data);
+  //   this.report.location = data.pos;
+  //   console.log('this.report ->', this.report);
+  // }
 }
 
 
