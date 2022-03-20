@@ -62,20 +62,27 @@ ion-footer{
 	font-size: 1.1em;
 	font-family: 'Aclonica', sans-serif;
 }
-.nextPage{
-	margin-top:15%;
-	margin-left:35%;
-	margin-right:35%;
-}
 
 ion-item{
-    margin-top:10%;
-    margin-right:10%;
+    margin-top:5%;
     margin-left:10%;
 	margin-right:10%;
-	--ion-background-color: #ffffff;
+	--background-color: #ffffff;
 
 }
+
+ion-input{
+    --background: #ffffff;;
+}
+
+ion-content{
+	font-family: 'Aclonica', sans-serif;
+	font-size:1em;
+	--ion-background-color: #ffffff;
+	
+}
+
+
 
 //Import font
 p.my-header{
@@ -84,11 +91,11 @@ p.my-header{
 	font-size: 1.5em;
 }
 
-ion-content{
-	font-family: 'Aclonica', sans-serif;
-	font-size:1em;
-	--ion-background-color: #ffffff;
-	
+
+.nextPage{
+	margin-top:15%;
+	margin-left:35%;
+	margin-right:35%;
 }
 
 
