@@ -8,7 +8,7 @@ import { LocationService } from '../../services/location.service';
 import { Report } from 'src/app/models/models';
 
 import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
-import { GooglemapsComponent } from 'src/app/googlemaps/googlemaps.component';
+import { GooglemapsComponent } from 'src/app/components/googlemaps/googlemaps.component';
 
 @Component({
   selector: 'app-location',
