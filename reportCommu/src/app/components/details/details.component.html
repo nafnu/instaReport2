@@ -16,13 +16,10 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-list>
-          <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location
-          </ion-button>
+          <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
           <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
           <ion-button color="new" class="custom ion-activated">Details of Incident</ion-button>
           <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
-        </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -32,14 +29,14 @@
   </ion-text>
 
   <ion-item>
-    <ion-label>Description</ion-label>
+    <ion-label color="danger">Description</ion-label>
     <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
   </ion-item>
 
   <br><br>
-  <ion-button size="large" shape="round" color="medium" class="custom ion-activated ion-focused"
-    (click)="captureImage()">
-    Browse your photo or video
+  <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
+    (click)="captureImage()"> 
+    Add your video or photo
   </ion-button>
 
   <div class="nextPage">
