@@ -10,99 +10,106 @@ import { Report } from 'src/app/models/models';
 //import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { GooglemapsComponent } from 'src/app/components/googlemaps/googlemaps.component';
 
+
 @Component({
   selector: 'app-location',
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.scss'],
 })
 export class LocationComponent implements OnInit {
-  
+
   report: Report = {
     uid: '',
     idRep: '',
     location: null,
     imagen: null,
-    idfield: '', 
+    idfield: '',
     description: '',
     authority: '',
-}
+  }
+
+  files = [];
+
+  @ViewChild('map') mapView: ElementRef;
+
+  constructor(
+    public modalCtrl: ModalController,
+  ) { }
+
+  ngOnInit() {  }
 
 
-   @ViewChild('map') mapView:ElementRef;
-  
-  constructor(public modalCtrl: ModalController,) { }
 
-  ngOnInit() { }
+ ///**** CAPTURE IMAGE */
 
-// ///**** GEOLOCATION WITH ERROR */
-//   ionViewDidEnter(){
-//     this.createMap();
-//   }
+ title = 'angularCapacitor';
+ image = '';
 
-//   createMap(){
-//     const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
-//     console.log("createMap", boundingRect)
+ async captureImage() {
+   const image = await Camera.getPhoto({
+     quality: 90,
+     allowEditing: true,
+     source: CameraSource.Prompt,
+     resultType: CameraResultType.Base64
+   });
+ }
 
-//     CapacitorGoogleMaps.create({
-//       width: Math.round(boundingRect.width),
-//       height: Math.round(boundingRect.height),
-//       x: Math.round(boundingRect.x),
-//       y: Math.round(boundingRect.y),
-//       latitude: 53.350140,
-//       longitude: -6.266155,
-//       zoom: 5
-//     })
-//   }
+ if(image) {
+   this.image = `data:image/jpeg;base64,${image.base64}`!;
+ }
+  // ///**** GEOLOCATION WITH ERROR */
+  //   ionViewDidEnter(){
+  //     this.createMap();
+  //   }
 
-async addLocation(){
+  //   createMap(){
+  //     const boundingRect = this.mapView.nativeElement.getBoundingClientRect() as DOMRect;
+  //     console.log("createMap", boundingRect)
 
-  // const ubicacion = this.report.location;
-  // let position = {
-  //   lat: 53.34807,
-  //   lng: -6.24827
-  // };
-  // if(ubicacion !== null){
-  //   position = ubicacion;
-  // }
+  //     CapacitorGoogleMaps.create({
+  //       width: Math.round(boundingRect.width),
+  //       height: Math.round(boundingRect.height),
+  //       x: Math.round(boundingRect.x),
+  //       y: Math.round(boundingRect.y),
+  //       latitude: 53.350140,
+  //       longitude: -6.266155,
+  //       zoom: 5
+  //     })
+  //   }
 
-  const modalAdd = await this.modalCtrl.create({
-    component: GooglemapsComponent,
-    cssClass:'small-modal'
-    // mode: 'ios',
-    // swipeToClose: true, 
-    // componentProps: {position} 
-  });
+  async addLocation() {
 
-  await modalAdd.present();
+    // const ubicacion = this.report.location;
+    // let position = {
+    //   lat: 53.34807,
+    //   lng: -6.24827
+    // };
+    // if(ubicacion !== null){
+    //   position = ubicacion;
+    // }
 
-  // const {data} = await modalAdd.onWillDismiss();
-
-  // if(data){
-  //   console.log('data ->', data);
-  //   this.report.location = data.pos;
-  //   console.log('this.report ->', this.report);
-  // }
-}
-
-
-  
-
-///**** CAPTURE IMAGE */
-  
-title = 'angularCapacitor'; 
-image = '';
-
-async captureImage(){
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: true,
-      source: CameraSource.Prompt,
-      resultType: CameraResultType.Base64
+    const modalAdd = await this.modalCtrl.create({
+      component: GooglemapsComponent,
+      cssClass: 'small-modal'
+      // mode: 'ios',
+      // swipeToClose: true, 
+      // componentProps: {position} 
     });
+
+    await modalAdd.present();
+
+    // const {data} = await modalAdd.onWillDismiss();
+
+    // if(data){
+    //   console.log('data ->', data);
+    //   this.report.location = data.pos;
+    //   console.log('this.report ->', this.report);
+    // }
   }
 
-  if(image){
-    this.image = `data:image/jpeg;base64,${image.base64}`!;
-  }
-  
+
+
+
+ 
+
 }

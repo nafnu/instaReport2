@@ -56,6 +56,13 @@ export class DbService {
     return docData(typeRef, { idField: 'idField'}) as Observable<Type>;
   }
 
+  //Get the current user and the firebase reference
+  getUserProfile(){
+    const user = this.auth.currentUser;
+    const userDocRef = doc(this.firestore, `users/${user.uid}`);
+    return docData(userDocRef);
+  }
+
 
     
 
