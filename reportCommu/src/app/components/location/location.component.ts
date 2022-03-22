@@ -3,11 +3,11 @@ import { Component, ElementRef, Inject, Input, OnInit, Renderer2, ViewChild } fr
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { ModalController } from '@ionic/angular';
-import { GooglemapsService } from 'src/app/components/googlemaps/googlemaps.service';
+//import { GooglemapsService } from 'src/app/components/googlemaps/googlemaps.service';
 
 import { Report } from 'src/app/models/models';
 
-import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
+//import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 import { GooglemapsComponent } from 'src/app/components/googlemaps/googlemaps.component';
 
 @Component({
