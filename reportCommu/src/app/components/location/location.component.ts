@@ -5,7 +5,7 @@ import { ModalController, LoadingController, AlertController } from '@ionic/angu
 //Imports to save the information in the database
 import { AuthService } from 'src/app/services/auth.service';
 import { DbService } from 'src/app/services/db.service';
-import { Report } from 'src/app/models/models';
+
 
 //Imports for the camera
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
@@ -25,16 +25,6 @@ import { loadingController } from '@ionic/core';
 })
 export class LocationComponent implements OnInit {
 
-  report: Report = {
-    uid: '',
-    idRep: '',
-    location: null,
-    imagen: null,
-    idfield: '',
-    description: '',
-    authority: '',
-  }
-
   profile = null;
   
   @ViewChild('map') mapView: ElementRef;
@@ -46,9 +36,9 @@ export class LocationComponent implements OnInit {
     private authService: AuthService,
     private db: DbService
   ) { 
-    this.authService.getUserProfile().subscribe(data => {
-      this.profile = data;
-    })
+    // this.authService.getUserProfile().subscribe(data => {
+    //   this.profile = data;
+    // })
   }
 
   ngOnInit() {  }
@@ -64,34 +54,34 @@ export class LocationComponent implements OnInit {
    const image = await Camera.getPhoto({
      quality: 90,
      allowEditing: true,
-     source: CameraSource.Photos, //Camera, photos or prompt!
+     source: CameraSource.Prompt, //Camera, photos or prompt!
      resultType: CameraResultType.Base64,
    });
 
    console.log(image);
 
-   if (image){
-    const loading = await this.loadingController.create();
-    await loading.present();
+  //  if (image){
+  //   const loading = await this.loadingController.create();
+  //   await loading.present();
 
-    const result = await this.db.uploadImage(image);
-    loading.dismiss();
+  //   const result = await this.db.uploadImage(image);
+  //   loading.dismiss();
 
-    if(!result){
-      const alert = await this.alertController.create({
-        header: 'Upload failed', 
-        message: 'There was a problem uploading your image.', 
-        buttons: ['OK'],
-      });
-      await alert.present();
-    }
-   }
+  //   if(!result){
+  //     const alert = await this.alertController.create({
+  //       header: 'Upload failed', 
+  //       message: 'There was a problem uploading your image.', 
+  //       buttons: ['OK'],
+  //     });
+  //     await alert.present();
+  //   }
+  //  }
 
  }
 
- if(image) {
-   this.image = `data:image/jpeg;base64,${image.base64}`!;
- }
+//  if(image) {
+//    this.image = `data:image/jpeg;base64,${image.base64}`!;
+//  }
   // ///**** GEOLOCATION WITH ERROR */
   //   ionViewDidEnter(){
   //     this.createMap();

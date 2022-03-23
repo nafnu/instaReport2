@@ -36,11 +36,11 @@ export class AuthService {
   }
 
   //Get the current user and the firebase reference
-  getUserProfile(){
-    const user = this.auth.currentUser;
-    const userDocRef = doc(this.firestore, `users/${user.uid}`);
-    return docData(userDocRef);
-  }
+  // getUserProfile(){
+  //   const user = this.auth.currentUser;
+  //   const userDocRef = doc(this.firestore, `users/${user.uid}`);
+  //   return docData(userDocRef);
+  // }
   
   logout(){
     return signOut(this.auth);
