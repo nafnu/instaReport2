@@ -4,6 +4,9 @@ import { Auth } from '@angular/fire/auth';
 
 import { collectionData, Firestore, doc, getFirestore ,addDoc, collection, deleteDoc, updateDoc, docData } from '@angular/fire/firestore';
 import { setDoc } from 'firebase/firestore';
+import { Photo } from '@capacitor/camera';
+import { getDownloadURL, ref, Storage } from '@angular/fire/storage';
+import { uploadString } from 'firebase/storage';
 
 
 
@@ -36,7 +39,10 @@ export interface User {
 })
 export class DbService {
 
-  constructor(private firestore: Firestore, private auth: Auth ) {  }
+  constructor(
+    private firestore: Firestore, 
+    private auth: Auth,
+    private storage: Storage ) {  }
 
   //Add user - with authentificacion email/password - also add as collection with uid
   createDoc(user: User): Promise<void>{
@@ -56,11 +62,35 @@ export class DbService {
     return docData(typeRef, { idField: 'idField'}) as Observable<Type>;
   }
 
-  //Get the current user and the firebase reference
-  getUserProfile(){
-    const user = this.auth.currentUser;
-    const userDocRef = doc(this.firestore, `users/${user.uid}`);
-    return docData(userDocRef);
+  // //Get the current user and the firebase reference
+  // getUserProfile(){
+  //   const user = this.auth.currentUser;
+  //   const userDocRef = doc(this.firestore, `users/${user.uid}`);
+  //   return docData(userDocRef);
+  // }
+
+  //Uload images to firebase storage
+  async uploadImage(cameraFile: Photo){
+    const report = this.auth.currentUser;
+    const path = `uploads/${report.uid}/problem.png`;
+    const storageRef = ref(this.storage,path);
+
+    try{
+      await uploadString(storageRef, cameraFile.base64String, 'base64'); //put the image in the storage
+
+      const imageUrl = await getDownloadURL(storageRef); //get the url of the image
+
+      const userDocRef = doc(this.firestore, `reports/${report.uid}`);
+     
+      await setDoc(userDocRef, {
+        imageUrl, 
+      });
+
+      return true;
+
+    }catch(e){
+      return null;
+    }
   }
 
 
