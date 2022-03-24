@@ -19,8 +19,7 @@ export class AuthService {
 
   constructor(
     private auth: Auth,
-    private firestore: Firestore
-    ) { }
+  ) { }
 
   //Allow to register unique users by emails and password. With unique ID ***Feature security
   async register(data: User){

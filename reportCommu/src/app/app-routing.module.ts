@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
 import { SplashComponent } from './components/splash/splash.component';
+import { HistoryReportComponent } from './components/history-report/history-report.component';
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -32,15 +33,17 @@ const routes: Routes = [
   {path:'home', component:HomeComponent,
   ...canActivate(redirectUnauthorizedToLogin)},
 
-  {path:'location', component: LocationComponent},
+  {path:'location/:uid', component: LocationComponent},
 
-  {path:'type', component: TypeComponent},
+  {path:'type/:uid/:lat/:long', component: TypeComponent},
 
-  {path:'details', component: DetailsComponent},
+  {path:'details/:uid/:lat/:long/:incident', component: DetailsComponent},
 
   {path:'summary', component:SummaryComponent},
   
   {path:'restart', component:RestartComponent},
+
+  {path:'history', component:HistoryReportComponent}
  
 
 ];

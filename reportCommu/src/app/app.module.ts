@@ -32,11 +32,13 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SplashComponent } from './components/splash/splash.component';
 import { ModalMapComponent } from './components/modal-map/modal-map.component';
+import { HistoryReportComponent } from './components/history-report/history-report.component';
 
 //Native imports from android
 import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
     LoginComponent,
     RegisterComponent,
     SplashComponent,
+    HistoryReportComponent,
     ModalMapComponent
   ],
   entryComponents: [],

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { AlertController } from '@ionic/angular';
@@ -13,17 +13,26 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class DetailsComponent implements OnInit {
 
-  @Input() id: string;
-  type: Type = null;
+  passedIdD:string;
+  lat:string;
+  long:string;
+  incident: string;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private db: DbService, 
-    private alertContrl: AlertController
+    private alertContrl: AlertController,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
+    this.lat = this.activatedRoute.snapshot.paramMap.get('lat');
+    this.long = this.activatedRoute.snapshot.paramMap.get('long');
+    this.incident = this.activatedRoute.snapshot.paramMap.get('type.incident');
+    console.log( this.passedIdD);
+  }
 
   async logout(){
     await this.authService.logout();

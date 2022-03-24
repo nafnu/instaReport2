@@ -29,7 +29,11 @@
     <h2>The last check!</h2>
   </ion-text>
 
-
+  <ion-card id="image-card" *ngFor="let report of reports">
+      
+    <img class="image" src="{{report.image}}" style="align-items: center"/>
+    <div class="title">{{report.incident}}</div>
+  </ion-card>
 
 
 

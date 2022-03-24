@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlertController} from '@ionic/angular';
 import { DbService} from 'src/app/services/db.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-type',
@@ -10,9 +10,18 @@ import { Router } from '@angular/router';
 })
 export class TypeComponent implements OnInit {
 
+  passedIdL:string;
+  lat:string;
+  long:string;
+
   types = [];
 
-  constructor(private db: DbService, public router: Router, private alertContrl: AlertController) { 
+  constructor(
+    private db: DbService, 
+    public router: Router, 
+    private alertContrl: AlertController,
+    private activatedRoute: ActivatedRoute) 
+    { 
     this.db.getType().subscribe(res => {
       console.log(res);
       this.types = res;
@@ -20,11 +29,20 @@ export class TypeComponent implements OnInit {
 
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    this.passedIdL = this.activatedRoute.snapshot.paramMap.get('uid');
+    this.lat = this.activatedRoute.snapshot.paramMap.get('lat');
+    this.long = this.activatedRoute.snapshot.paramMap.get('long');
+    console.log(this.passedIdL);
+    console.log(this.lat);
+    console.log(this.long);
+  }
+
+  
 
   openType(incident){}
 
-  // Manage propagation in a much more efficient way and only update the content inside of the component rather than re-create the component altogether
+  // Update the content inside of the component rather than re-create the component altogether
   trackIncident(index: number, itemObject: any) {
     return itemObject.id;
   }

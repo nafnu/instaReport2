@@ -30,7 +30,7 @@
 
   <!-- Checkboxes in a List -->
   <ion-list>
-    <ion-item *ngFor="let type of types; trackBy:trackIncident" (click)="openType(type)" [routerLink]="['/details']">
+    <ion-item *ngFor="let type of types; trackBy:trackIncident" [routerLink]="['/details', passedId, lat, long, incident]">
       <!-- I need to add type.id to save id -->
       <ion-label>{{ type.incident }}</ion-label>
       <ion-checkbox slot="start"></ion-checkbox>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { DbService } from 'src/app/services/db.service';
 import { Report } from 'src/app/models/models';
 
 @Component({
@@ -8,19 +11,36 @@ import { Report } from 'src/app/models/models';
 })
 export class SummaryComponent implements OnInit {
 
-  // report: Report = {
-  //   uid: '',
-  //   idRep: '',
-  //   location: null,
+  reports = [];
+  uid = null;
+
+  // summary: Report = {
+  //   uid: null,
+  //   lat: null,
+  //   lng: null,
   //   imagen: null,
-  //   idfield: '',
-  //   description: '',
-  //   authority: '',
+  //   incident: null, 
+  //   description: null,
+  //   authority: null,
   // }
 
+  constructor(
+    private dataService: DbService, 
+    public router: Router, 
+    private alertContrl: AlertController
+  ) { 
+    this.dataService.getReports().subscribe(res => {
+      this.reports = res;
+    });
+    
+  }
 
-  constructor() { }
+  async summary(){
 
-  ngOnInit() {}
+  }
+
+  ngOnInit() {
+    console.log(this.uid);
+  }
 
 }

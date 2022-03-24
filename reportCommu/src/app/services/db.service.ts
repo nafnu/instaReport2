@@ -33,6 +33,16 @@ export interface User {
  password: string
 }
 
+export interface Report {
+  uid?: string;
+  lat: string;
+  lng: string;
+  imagen: [];
+  incident: string; 
+  description: string;
+  authority: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,20 +60,42 @@ export class DbService {
     return setDoc(group, user);
   }
 
-  //Get incident type form the Firebase
+  //Get incident type from the Firebase
   getType(): Observable<Type[]> {
     const typeRef = collection(this.firestore, 'type');
     return collectionData(typeRef, { idField: 'idField'}) as Observable<Type[]>;
   }
 
-   //Get incident type by Id form the Firebase
+   //Get incident type by Id from the Firebase
   getTypeById(id): Observable<Type> {
     const typeRef = doc(this.firestore, `type/${id}`);
     return docData(typeRef, { idField: 'idField'}) as Observable<Type>;
   }
 
-  // //Get the current user and the firebase reference
-  // getUserProfile(){
+   //Get report history  from the Firebase
+  getReports(): Observable<Report[]> {
+    const reportRef = collection(this.firestore, 'reports');
+    return collectionData(reportRef, { idField: 'id' }) as Observable<Report[]>;
+  }
+   //Get report history by Id from the Firebase
+  getReportById(id): Observable<Report> {
+    const reportRef = doc(this.firestore, `reports/${id}`);
+    return docData(reportRef, { idField: 'id' }) as Observable<Report>;
+  }
+
+     //Get user from the Firebase
+     getUser(): Observable<User[]> {
+      const userRef = collection(this.firestore, 'reports');
+      return collectionData(userRef, { idField: 'id' }) as Observable<User[]>;
+    }
+     //Get user by Id from the Firebase
+    getUserById(id): Observable<User> {
+      const userRef = doc(this.firestore, `reports/${id}`);
+      return docData(userRef, { idField: 'id' }) as Observable<User>;
+    }
+
+  //Get the current user and the firebase reference
+  // getUserId(){
   //   const user = this.auth.currentUser;
   //   const userDocRef = doc(this.firestore, `users/${user.uid}`);
   //   return docData(userDocRef);
@@ -92,9 +124,7 @@ export class DbService {
       return null;
     }
   }
-
-
-    
+ 
 
 
 }
