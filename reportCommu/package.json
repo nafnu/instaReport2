@@ -53,6 +53,7 @@
     "cordova-plugin-streaming-media": "^2.3.0",
     "cordova-plugin-telerik-imagepicker": "^2.3.6",
     "firebase": "^9.6.8",
+    "jetifier": "^2.0.0",
     "rxfire": "^6.0.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
