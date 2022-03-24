@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">instareport</string>
-    <string name="title_activity_main">instareport</string>
-    <string name="package_name">com.instareport</string>
-    <string name="custom_url_scheme">com.instareport</string>
-</resources>

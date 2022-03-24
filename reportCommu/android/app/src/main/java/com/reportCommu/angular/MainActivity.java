@@ -1,4 +1,4 @@
-package com.instareport;
+package com.reportCommu.angular;
 
 import com.getcapacitor.BridgeActivity;
 
