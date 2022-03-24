@@ -1,10 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,7 +21,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 //Angular forms validation
 import {FormsModule,ReactiveFormsModule} from '@angular/forms';
 
-//component imports
+//Components imports
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
 import { LocationComponent } from './components/location/location.component';
@@ -33,18 +30,13 @@ import { SummaryComponent } from './components/summary/summary.component';
 import { TypeComponent } from './components/type/type.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
-import { MenuComponent } from './components/menu/menu.component';
 import { SplashComponent } from './components/splash/splash.component';
+import { ModalMapComponent } from './components/modal-map/modal-map.component';
 
-
-//google maps imports
+//Native imports from android
+import { Camera } from '@ionic-native/camera/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
-
-//auth service
-import { AuthService} from './services/auth.service'
-
-
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 
 @NgModule({
   declarations: [
@@ -57,8 +49,8 @@ import { AuthService} from './services/auth.service'
     TypeComponent,
     LoginComponent,
     RegisterComponent,
-    MenuComponent,
-    SplashComponent
+    SplashComponent,
+    ModalMapComponent
   ],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,FormsModule,ReactiveFormsModule,
@@ -70,6 +62,7 @@ import { AuthService} from './services/auth.service'
     provideStorage(() => getStorage()),
   ],
   providers: [
+    Camera,
     Geolocation,
     NativeGeocoder,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, ScreenTrackingService, UserTrackingService],

@@ -3,12 +3,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-import { Storage, ref, uploadString } from '@angular/fire/storage';
-
+import { Storage } from '@angular/fire/storage';
 import { DbService } from '../../services/db.service'
-import { doc, docData, Firestore } from '@angular/fire/firestore'
+import { Firestore } from '@angular/fire/firestore'
 import { Auth } from '@angular/fire/auth';
-import { base64 } from '@firebase/util';
 import { User } from 'src/app/models/models';
 
 @Component({

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+
+//Save the info in the firebase
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
-
-
 
 @Component({
   selector: 'app-login',
@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
- 
+
   logingForm: FormGroup;
 
   credentials = {
@@ -28,19 +28,6 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) { }
 
-  goToRegister(){
-    this.router.navigateByUrl('/register', { replaceUrl: true });
-  }
-
-  //Easy access for form fields
-  get email() {
-    return this.logingForm.get('email');
-  }
-
-  get password() {
-    return this.logingForm.get('password');
-  }
-
   ngOnInit() { 
     this.logingForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern('^[a-zA-A-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$')]],
@@ -48,21 +35,20 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  // async login() {
-  //   const loading = await this.alertController.create();
-  //   await loading.present();
+  goToRegister(){
+    this.router.navigateByUrl('/register', { replaceUrl: true });
+  }
 
-  //   const user = await this.authService.login(this.logingForm.value);
-  //   await loading.dismiss();
+  //Easy access for form fields
+  get email(){
+    return this.logingForm.get('email');
+  }
 
-  //   if (user){
-  //     this.router.navigateByUrl('/home', { replaceUrl: true });
-  //   }else{
-  //     this.showAlert('Login failed', 'Error on password or email. Please try again');
-  //   }
-  //  }
+  get password(){
+    return this.logingForm.get('password');
+  }
 
-  async login(){
+async login(){
     this.credentials = await this.logingForm.value;
     console.log('credentials ->', this.credentials); //test the work the form
 
@@ -87,22 +73,24 @@ export class LoginComponent implements OnInit {
     await alert.present();
   }
 
+
   public errorMessagesText = {
     email: [
-      { type: 'required', message: 'Email is required' },
-      { type: 'pattern', message: 'Please enter a valid email address' },
+      {type: 'required', message:'Email is required'},
+      {type: 'pattern', message:'Please enter a valid email address'},
     ],
     password: [
-      { type: 'required', message: 'Password is required' },
-      { type: 'pattern', message: 'Please enter a valid password. At least 8 characters in lengt.Lowercase or/and Uppercase letters. Numbers and special characters. ' },
+      {type: 'required', message:'Password is required'},
+      {type: 'pattern', message:'Please enter a valid password. At least 8 characters in lengt.Lowercase or/and Uppercase letters. Numbers and special characters. '},
     ]
   }
 
+    public submitLog(){
+    console.log(this.logingForm.value);
 
-  public submitLog() {
-      this.login();
+    this.login();
   }
 
-
+  
 
 }

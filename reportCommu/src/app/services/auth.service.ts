@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject} from 'rxjs'
-import { DbService } from './db.service';
-
+import {  Firestore } from '@angular/fire/firestore';
+import { User } from '../models/models';
 import { 
   Auth, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
   signOut 
 } from '@angular/fire/auth';
-import { User } from '../models/models';
-import { authState } from 'rxfire/auth';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +17,10 @@ import { authState } from 'rxfire/auth';
 
 export class AuthService {
 
-  constructor(private auth: Auth) { }
+  constructor(
+    private auth: Auth,
+    private firestore: Firestore
+    ) { }
 
   //Allow to register unique users by emails and password. With unique ID ***Feature security
   async register(data: User){
@@ -29,13 +32,9 @@ export class AuthService {
     return await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  //Monitoring user - This method gets invoked in the UI thread on changes in the authentication state.
- stateUser(){
-   return this.auth.onAuthStateChanged;
-  }
-
   logout(){
     return signOut(this.auth);
   }
  
 }
+

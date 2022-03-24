@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { AlertController} from '@ionic/angular';
 import { DbService} from 'src/app/services/db.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-type',
@@ -24,4 +23,10 @@ export class TypeComponent implements OnInit {
   ngOnInit() { }
 
   openType(incident){}
+
+  // Manage propagation in a much more efficient way and only update the content inside of the component rather than re-create the component altogether
+  trackIncident(index: number, itemObject: any) {
+    return itemObject.id;
+  }
 }
+

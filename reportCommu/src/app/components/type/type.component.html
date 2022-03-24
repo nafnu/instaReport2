@@ -1,11 +1,11 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="new3">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button color="dark"></ion-back-button>
     </ion-buttons>
     <ion-title color="new">
       <p class="my-header">
-        <ion-text color="new2">Insta</ion-text>Report - Type
+        <ion-text color="new2">Insta</ion-text>Report
       </p>
     </ion-title>
   </ion-toolbar>
@@ -24,21 +24,19 @@
     </ion-row>
   </ion-grid>
 
-  <br><br>
   <ion-text color="new">
     <h2>What kind of incident are you reporting?</h2>
   </ion-text>
 
-<!-- Checkboxes in a List -->
-<ion-list>
-  <ion-item *ngFor="let type of types" (click)="openType(type)" [routerLink]="['/details']"> <!-- I need to add this to save why type of type.id -->
-    <ion-label>{{ type.incident }}</ion-label>
-    <ion-checkbox slot="start" ></ion-checkbox>
-  </ion-item>
-</ion-list>
+  <!-- Checkboxes in a List -->
+  <ion-list>
+    <ion-item *ngFor="let type of types; trackBy:trackIncident" (click)="openType(type)" [routerLink]="['/details']">
+      <!-- I need to add type.id to save id -->
+      <ion-label>{{ type.incident }}</ion-label>
+      <ion-checkbox slot="start"></ion-checkbox>
+    </ion-item>
+  </ion-list>
 
-<!-- <div class="nextPage">
-  <ion-button color="new" size="large" class="custom ion-activated ion-focused [routerLink]="['/details', type.id]"">NEXT</ion-button>
-</div> -->
+
 
 </ion-content>
