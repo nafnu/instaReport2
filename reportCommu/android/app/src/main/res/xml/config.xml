@@ -6,9 +6,17 @@
     <param name="android-package" value="com.sarriaroman.PhotoViewer.PhotoViewer"/>
   </feature>
 
+  <feature name="Camera">
+    <param name="android-package" value="org.apache.cordova.camera.CameraLauncher"/>
+  </feature>
+
   <feature name="File">
     <param name="android-package" value="org.apache.cordova.file.FileUtils"/>
     <param name="onload" value="true"/>
+  </feature>
+
+  <feature name="Geolocation">
+    <param name="android-package" value="org.apache.cordova.geolocation.Geolocation"/>
   </feature>
 
   <feature name="Media">
@@ -17,6 +25,10 @@
 
   <feature name="Capture">
     <param name="android-package" value="org.apache.cordova.mediacapture.Capture"/>
+  </feature>
+
+  <feature name="NativeGeocoder">
+    <param name="android-package" value="cordova.plugin.nativegeocoder.NativeGeocoder"/>
   </feature>
 
   <feature name="StreamingMedia">

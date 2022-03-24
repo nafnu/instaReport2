@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
-import { Observable } from 'rxjs';
+import { AlertController} from '@ionic/angular';
 import { DbService} from 'src/app/services/db.service';
-import { Router, NavigationExtras } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-type',
@@ -30,3 +29,4 @@ export class TypeComponent implements OnInit {
     return itemObject.id;
   }
 }
+

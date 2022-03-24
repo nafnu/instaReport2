@@ -8,15 +8,15 @@ import { Report } from 'src/app/models/models';
 })
 export class SummaryComponent implements OnInit {
 
-  report: Report = {
-    uid: '',
-    idRep: '',
-    location: null,
-    imagen: null,
-    idfield: '',
-    description: '',
-    authority: '',
-  }
+  // report: Report = {
+  //   uid: '',
+  //   idRep: '',
+  //   location: null,
+  //   imagen: null,
+  //   idfield: '',
+  //   description: '',
+  //   authority: '',
+  // }
 
 
   constructor() { }

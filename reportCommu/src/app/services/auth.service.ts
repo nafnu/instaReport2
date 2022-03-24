@@ -1,18 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject} from 'rxjs'
-
-import {  Firestore, doc, docData } from '@angular/fire/firestore';
-
-import { DbService } from './db.service';
-
+import {  Firestore } from '@angular/fire/firestore';
+import { User } from '../models/models';
 import { 
   Auth, 
   createUserWithEmailAndPassword, 
   signInWithEmailAndPassword,
   signOut 
 } from '@angular/fire/auth';
-import { User } from '../models/models';
-import { authState } from 'rxfire/auth';
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -35,15 +32,9 @@ export class AuthService {
     return await signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  //Get the current user and the firebase reference
-  // getUserProfile(){
-  //   const user = this.auth.currentUser;
-  //   const userDocRef = doc(this.firestore, `users/${user.uid}`);
-  //   return docData(userDocRef);
-  // }
-  
   logout(){
     return signOut(this.auth);
   }
  
 }
+

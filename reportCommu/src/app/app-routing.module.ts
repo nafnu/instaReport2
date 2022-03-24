@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-
 
 import { HomeComponent } from './components/home/home.component';
 import { DetailsComponent } from './components/details/details.component';
@@ -14,7 +12,6 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import{ redirectUnauthorizedTo, redirectLoggedInTo, canActivate, AuthGuard } from '@angular/fire/auth-guard';
 import { SplashComponent } from './components/splash/splash.component';
-
 
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
@@ -43,7 +40,8 @@ const routes: Routes = [
 
   {path:'summary', component:SummaryComponent},
   
-  {path:'restart', component:RestartComponent}
+  {path:'restart', component:RestartComponent},
+ 
 
 ];
 
