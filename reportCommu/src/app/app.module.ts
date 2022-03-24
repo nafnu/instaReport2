@@ -43,10 +43,6 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx'
 import { GooglemapsComponent } from './components/googlemaps/googlemaps.component';
 //import { CapacitorGoogleMaps } from '@capacitor-community/capacitor-googlemaps-native';
 
-//auth service
-import { AuthService} from './services/auth.service'
-
-
 
 
 
