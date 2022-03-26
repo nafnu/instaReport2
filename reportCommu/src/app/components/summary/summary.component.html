@@ -31,32 +31,27 @@
     <h2>The last check!</h2>
   </ion-text>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col class="ion-justify-content-center">
-        <ion-list>
+  
+        <div class="summary">
+          <ion-label>Authority</ion-label>
           <ion-item>
-            <ion-label>Authority</ion-label>
-            <ion-input></ion-input>
+            <ion-input [value]="council" ></ion-input>
           </ion-item>
+          <ion-label>Incident Type</ion-label>
           <ion-item>
-            <ion-label>Incident Type</ion-label>
-            <ion-input></ion-input>
+            <ion-input [value]="incident" ></ion-input>
           </ion-item>
+          <ion-label> Incident Location </ion-label>
           <ion-item>
-            <ion-label> Incident Location </ion-label>
-            <ion-input></ion-input>
+            <ion-input [value]="  lat" >Latittude</ion-input>
+            <ion-input [value]="  long" >Longitude</ion-input>
           </ion-item>
+          <ion-label>User Information</ion-label>
           <ion-item>
-            <ion-label>User Information</ion-label>
-            <ion-textarea></ion-textarea>
+            <ion-textarea value="user" ></ion-textarea>
           </ion-item>
 
-        </ion-list>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+        </div>
   <ion-button color="success" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send
     your email of <br>the report</ion-button>
 

@@ -72,7 +72,7 @@ export class SummaryComponent implements OnInit {
     if( this.long <= fingal && this.long < dunla && this.long < dcity){
       this.council = "Fingal County Council";
     }else if( this.long > fingal && this.long <= dunla && this.long < dcity){
-      this.council = "Dún Laoghaire-Rathdown County Council";
+      this.council = "Dún Laoghaire County Council";
     }else if( this.long > fingal && this.long > dunla && this.long >= dcity ){
       this.council = "Dublin City Council";
     }
