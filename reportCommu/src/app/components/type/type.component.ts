@@ -23,7 +23,7 @@ export class TypeComponent implements OnInit {
   data: string;
 
   CHECK_LIST = [
-    { name: 'Community', value: 'Community', checked: true },
+    { name: 'Community', value: 'Community', checked: false },
     { name: 'Abandoned trolleys or bikes', value: 'Abandoned trolleys or bikes' },
     { name: 'Noise or Pollution', value: 'Noise or Pollution' },
     { name: 'Parking or Cars', value: 'Parking or Cars' },
@@ -82,7 +82,7 @@ export class TypeComponent implements OnInit {
     this.CHECK_LIST[i].checked = e.target.checked;
     this.updateCheckControl(checkboxArrayList, e.target);
 
-    // this.checkMaster();
+    this.checkMaster();
 
   }
 

@@ -16,8 +16,9 @@ export class DetailsComponent implements OnInit {
   passedIdD:string;
   lat:string;
   long:string;
-
   incident: string;
+
+  note: string ='';
 
   constructor(
     private authService: AuthService,
@@ -36,6 +37,12 @@ export class DetailsComponent implements OnInit {
     console.log(this.lat);
     console.log(this.long);
     console.log(this.incident);
+    console.log(this.note);
+  }
+
+  getNotes(ev: CustomEvent){
+    this.note = ev.detail.value;
+    console.log(this.note);
   }
 
   async logout(){

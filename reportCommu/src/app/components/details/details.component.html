@@ -38,7 +38,8 @@
 
   <ion-item>
     <ion-label>Description</ion-label>
-    <ion-textarea rows="6" cols="20" placeholder="Enter any notes here..."></ion-textarea>
+    <ion-textarea (ionChange)="getNotes($event)" name="notes" rows="6" cols="20" placeholder="Enter any notes here..."
+    ></ion-textarea>
   </ion-item>
 
   <!-- <br><br>
@@ -48,6 +49,8 @@
   </ion-button> -->
 
   <div class="nextPage">
-  <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary']">NEXT</ion-button>
+  <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary', uid, lat, long, data, note]" >NEXT</ion-button>
   </div>
 </ion-content>
+
+<!-- [routerLink]="['/summary']" -->

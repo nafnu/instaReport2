@@ -22,8 +22,6 @@ const routes: Routes = [
   {path:'', component:SplashComponent},
   
   {path:'login', component:LoginComponent,
-  // canActivate:[AuthGuard], 
-  // data:{component: HomeComponent}
   ...canActivate(redirectLoggedInToHome)
    },
 
@@ -39,7 +37,7 @@ const routes: Routes = [
 
   {path:'details/:uid/:lat/:long/:data', component: DetailsComponent},
 
-  {path:'summary', component:SummaryComponent},
+  {path:'summary/:uid/:lat/:long/:data/:note', component:SummaryComponent},
   
   {path:'restart', component:RestartComponent},
 

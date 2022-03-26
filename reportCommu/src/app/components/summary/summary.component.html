@@ -12,13 +12,15 @@
 </ion-header>
 
 <ion-content>
- 
+
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location
+        </ion-button>
         <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details']">Details of Incident</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details']">Details of Incident
+        </ion-button>
         <ion-button color="new" class="custom ion-activated">Report Summary</ion-button>
       </ion-col>
     </ion-row>
@@ -29,8 +31,33 @@
     <h2>The last check!</h2>
   </ion-text>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col class="ion-justify-content-center">
+        <ion-list>
+          <ion-item>
+            <ion-label>Authority</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Incident Type</ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label> Incident Location </ion-label>
+            <ion-input></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>User Information</ion-label>
+            <ion-textarea></ion-textarea>
+          </ion-item>
 
- 
-  <ion-button color="success" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send your email of <br>the report</ion-button>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-button color="success" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send
+    your email of <br>the report</ion-button>
 
 </ion-content>
