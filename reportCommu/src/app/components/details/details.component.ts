@@ -16,6 +16,7 @@ export class DetailsComponent implements OnInit {
   passedIdD:string;
   lat:string;
   long:string;
+
   incident: string;
 
   constructor(
@@ -30,8 +31,11 @@ export class DetailsComponent implements OnInit {
     this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
     this.lat = this.activatedRoute.snapshot.paramMap.get('lat');
     this.long = this.activatedRoute.snapshot.paramMap.get('long');
-    this.incident = this.activatedRoute.snapshot.paramMap.get('type.incident');
-    console.log( this.passedIdD);
+    this.incident = this.activatedRoute.snapshot.paramMap.get('data');
+    console.log(this.passedIdD);
+    console.log(this.lat);
+    console.log(this.long);
+    console.log(this.incident);
   }
 
   async logout(){

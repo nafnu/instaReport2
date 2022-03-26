@@ -28,15 +28,44 @@
     <h2>What kind of incident are you reporting?</h2>
   </ion-text>
 
-  <!-- Checkboxes in a List -->
-  <ion-list>
+  <!-- Checkboxes in a List *** I didn't have time to implement well the output -->
+  <!-- <ion-list>
     <ion-item *ngFor="let type of types; trackBy:trackIncident" [routerLink]="['/details', passedId, lat, long, incident]">
-      <!-- I need to add type.id to save id -->
       <ion-label>{{ type.incident }}</ion-label>
       <ion-checkbox ngControl="termsAccepted" (ionChange)="onTermsChecked($event)" slot="start"></ion-checkbox>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
+  <form [formGroup]="ionicForm" (ngSubmit)="submitForm()">
 
+    <ion-list>
+
+      <ion-item *ngFor="let item of CHECK_LIST; let i=index">
+
+        <ion-label>{{item.name}}</ion-label>
+        <ion-checkbox color="danger"  slot="start" color="success" [value]="item.value" [checked]="item.checked"
+          (ionChange)="onSelectionChange($event,i)" [routerLink]="['/details', uid, lat, long, item.value]">
+        </ion-checkbox>
+
+      </ion-item>
+
+      <ion-item *ngIf="isFormSubmitted && ionicForm.controls['checkboxArrayList'].errors?.required">
+        <label class="error-msg">
+          Please select Incident!
+        </label>
+      </ion-item>
+    
+    </ion-list>
+
+    <div class="nextPage">
+    <ion-item class="center">
+      <ion-button type="submit" color="new" size="large" class="custom ion-activated ion-focused" >Next</ion-button>
+    </ion-item>
+  </div>
+  </form>
 
 </ion-content>
+
+<!-- [routerLink]="['details', item.value, uid, lat, long]"
+
+(click)="pushPage()"  -->

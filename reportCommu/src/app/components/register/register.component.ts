@@ -128,9 +128,6 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     //Save info connected to ID
     private db: DbService,
-    private storage: Storage,
-    private firestore: Firestore,
-    private auth: Auth
     ) { }
 
 

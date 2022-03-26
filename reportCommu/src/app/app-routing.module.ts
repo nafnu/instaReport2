@@ -37,7 +37,7 @@ const routes: Routes = [
 
   {path:'type/:uid/:lat/:long', component: TypeComponent},
 
-  {path:'details/:uid/:lat/:long/:incident', component: DetailsComponent},
+  {path:'details/:uid/:lat/:long/:data', component: DetailsComponent},
 
   {path:'summary', component:SummaryComponent},
   
