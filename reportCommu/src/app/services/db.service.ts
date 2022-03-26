@@ -91,7 +91,7 @@ export class DbService {
      //Get user by Id from the Firebase
     getUserById(id): Observable<User> {
       const userRef = doc(this.firestore, `reports/${id}`);
-      return docData(userRef, { idField: 'id' }) as Observable<User>;
+      return docData(userRef, { idField: 'uid' }) as Observable<User>;
     }
 
   //Get the current user and the firebase reference

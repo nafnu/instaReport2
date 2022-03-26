@@ -33,7 +33,7 @@
     <ion-item *ngFor="let type of types; trackBy:trackIncident" [routerLink]="['/details', passedId, lat, long, incident]">
       <!-- I need to add type.id to save id -->
       <ion-label>{{ type.incident }}</ion-label>
-      <ion-checkbox slot="start"></ion-checkbox>
+      <ion-checkbox ngControl="termsAccepted" (ionChange)="onTermsChecked($event)" slot="start"></ion-checkbox>
     </ion-item>
   </ion-list>
 

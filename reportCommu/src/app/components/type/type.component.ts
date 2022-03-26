@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AlertController} from '@ionic/angular';
 import { DbService} from 'src/app/services/db.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-type',
@@ -20,8 +21,9 @@ export class TypeComponent implements OnInit {
     private db: DbService, 
     public router: Router, 
     private alertContrl: AlertController,
-    private activatedRoute: ActivatedRoute) 
-    { 
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    ){ 
     this.db.getType().subscribe(res => {
       console.log(res);
       this.types = res;

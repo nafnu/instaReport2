@@ -29,10 +29,7 @@ export class SummaryComponent implements OnInit {
     public router: Router, 
     private alertContrl: AlertController
   ) { 
-    this.dataService.getReports().subscribe(res => {
-      this.reports = res;
-    });
-    
+       
   }
 
   async summary(){
@@ -40,7 +37,27 @@ export class SummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.uid);
+    this.getConuncil();
+    // : number = -6.2217166;
+  }
+
+ 
+  getConuncil(){
+    let long;
+    let council;
+
+    const fingal: number = -6.057170;
+    const dunla: number= -6.244754;
+    const dcity: number = 30.204670;
+  
+    if( long <= fingal && long < dunla && long < dcity){
+      council = "Fingal County Council";
+    }else if( long > fingal && long <= dunla && long < dcity){
+      council = "Dún Laoghaire-Rathdown County Council";
+    }else if( long > fingal && long > dunla && long >= dcity ){
+      council = "Dublin City Council";
+    }
+    return council;
   }
 
 }
