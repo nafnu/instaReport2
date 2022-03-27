@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { DbService } from 'src/app/services/db.service';
-import { Report } from 'src/app/models/models';
+import { Report, User } from 'src/app/models/models';
+
+import { Auth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-summary',
@@ -11,16 +13,16 @@ import { Report } from 'src/app/models/models';
 })
 export class SummaryComponent implements OnInit {
 
-  passedIdD:string;
-  lat:string;
-  long:string;
+  passedIdD: string;
+  lat: string;
+  long: string;
   incident: string;
   notes: string;
 
-  council:string;
+  council: string;
 
-  reports = [];
-  uid = null;
+  users = [];
+
 
   // summary: Report = {
   //   uid: null,
@@ -32,18 +34,26 @@ export class SummaryComponent implements OnInit {
   //   authority: null,
   // }
 
+  usermailData = {
+    username:'',
+    email:'',  //user email address to send email 
+    date:'',
+    mesage:''
+  }
   constructor(
-    private dataService: DbService, 
-    public router: Router, 
+    private dataService: DbService,
+    public router: Router,
     private alertContrl: AlertController,
-    private activatedRoute: ActivatedRoute
-  ) { 
-       
+    private activatedRoute: ActivatedRoute,
+    private auth: Auth
+  ) {
+    this.dataService.getType().subscribe(res => {
+      console.log(res);
+      this.users = res;
+    });
   }
 
-  async summary(){
-
-  }
+  openUser(incident) { }
 
   ngOnInit() {
     this.passedIdD = this.activatedRoute.snapshot.paramMap.get('uid');
@@ -61,22 +71,45 @@ export class SummaryComponent implements OnInit {
     console.log(this.council);
   }
 
- 
-  getConuncil(){
+
+  getConuncil() {
     this.long;
 
     const fingal: string = "-6.057170";
     const dunla: string = "-6.244754";
-    const dcity: string  = "30.204670";
-  
-    if( this.long <= fingal && this.long < dunla && this.long < dcity){
+    const dcity: string = "30.204670";
+
+    if (this.long <= fingal && this.long < dunla && this.long < dcity) {
       this.council = "Fingal County Council";
-    }else if( this.long > fingal && this.long <= dunla && this.long < dcity){
-      this.council = "Dún Laoghaire County Council";
-    }else if( this.long > fingal && this.long > dunla && this.long >= dcity ){
+    } else if (this.long > fingal && this.long <= dunla && this.long < dcity) {
+      //this.council = "Dún Laoghaire County Council";
+    } else if (this.long > fingal && this.long > dunla && this.long >= dcity) {
       this.council = "Dublin City Council";
     }
     return this.council;
   }
+
+  /*** part to send email */
+
+  sendEmail(){
+    
+  }
+
+// $scope.sendFeedback = function () {
+//     if (window.plugins & amp;& amp; window.plugins.emailComposer) {
+//       window.plugins.emailComposer.showEmailComposerWithCallback(function (result) {
+//         console.log("Respuesta -&gt; " + result);
+//       },
+//         "Asunto del Mensaje", // Subject
+//         "", // Body
+//         ["hola@ejemplo.com"], // To
+//         null, // CC
+//         null, // BCC
+//         false, // isHTML
+//         null, // Attachments
+//         null // Attachment Data
+//       );
+//     }
+//   }
 
 }

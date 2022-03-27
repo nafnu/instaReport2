@@ -31,7 +31,7 @@
     <h2>The last check!</h2>
   </ion-text>
 
-  
+  <br><br>
         <div class="summary">
           <ion-label>Authority</ion-label>
           <ion-item>
@@ -46,13 +46,17 @@
             <ion-input [value]="  lat" >Latittude</ion-input>
             <ion-input [value]="  long" >Longitude</ion-input>
           </ion-item>
+          
+          <ion-list>
           <ion-label>User Information</ion-label>
-          <ion-item>
-            <ion-textarea value="user" ></ion-textarea>
+          <ion-item ngFor="let user of users"> 
+            <!-- <ion-label>{{ user.email }}</ion-label>  -->
           </ion-item>
+        </ion-list>
 
         </div>
-  <ion-button color="success" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send
+        <br><br><br>
+  <ion-button color="success" id="submit-btn" value="SendMail" size="large" class="custom ion-activated ion-focused" (click)="sendEmail()"[routerLink]="['/restart']">Send
     your email of <br>the report</ion-button>
 
 </ion-content>

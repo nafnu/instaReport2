@@ -77,21 +77,24 @@ export class DbService {
     const reportRef = collection(this.firestore, 'reports');
     return collectionData(reportRef, { idField: 'id' }) as Observable<Report[]>;
   }
+
    //Get report history by Id from the Firebase
   getReportById(id): Observable<Report> {
     const reportRef = doc(this.firestore, `reports/${id}`);
     return docData(reportRef, { idField: 'id' }) as Observable<Report>;
   }
+  
 
      //Get user from the Firebase
      getUser(): Observable<User[]> {
-      const userRef = collection(this.firestore, 'reports');
+      const userRef = collection(this.firestore, 'users');
       return collectionData(userRef, { idField: 'id' }) as Observable<User[]>;
     }
+
      //Get user by Id from the Firebase
     getUserById(id): Observable<User> {
-      const userRef = doc(this.firestore, `reports/${id}`);
-      return docData(userRef, { idField: 'uid' }) as Observable<User>;
+      const userRef = doc(this.firestore, `users/${id}`);
+      return docData(userRef, { idField: 'idfield' }) as Observable<User>;
     }
 
   //Get the current user and the firebase reference
