@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
-import { AlertController } from '@ionic/angular';
-import { DbService, Type} from 'src/app/services/db.service';
+
+//Camera find location
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 
 @Component({
@@ -13,18 +13,17 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class DetailsComponent implements OnInit {
 
-  passedIdD:string;
-  lat:string;
-  long:string;
+  note: string;
+
+  passedIdD: string;
+  lat: string;
+  long: string;
   incident: string;
 
-  note: string ='';
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private db: DbService, 
-    private alertContrl: AlertController,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -45,7 +44,23 @@ export class DetailsComponent implements OnInit {
     console.log(this.note);
   }
 
-  async logout(){
+  ///**** CAPTURE IMAGE */
+
+  title = 'angularCapacitor';
+  image = '';
+  async captureImage() {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: true,
+      source: CameraSource.Prompt,
+      resultType: CameraResultType.Base64
+    });
+  }
+  if(image) {
+    this.image = `data:image/jpeg;base64,${image.base64}`!;
+  }
+
+  async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('login', { replaceUrl: true });
   }

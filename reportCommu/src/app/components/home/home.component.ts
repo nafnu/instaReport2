@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { DbService } from 'src/app/services/db.service';
 import { getAuth, onAuthStateChanged  } from "firebase/auth";
 import { NavController } from '@ionic/angular';
 

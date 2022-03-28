@@ -16,8 +16,8 @@
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location']">Incident Location</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type']">Incident Type</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type</ion-button>
         <ion-button color="new" class="custom ion-activated">Details of Incident</ion-button>
         <ion-button color="light" class="custom ion-activated">Report Summary</ion-button>
       </ion-col>
@@ -29,12 +29,12 @@
     <h2>Tell us more about the incident.</h2>
   </ion-text>
 
-  <ion-item>
-    <ion-label>
-      <p>{{incident}}</p>
-    </ion-label>
-  </ion-item>
 
+  <ion-item>
+    <ion-text color="new1">
+      <h2>{{incident}}</h2>
+    </ion-text>
+  </ion-item>
 
   <ion-item>
     <ion-label>Description</ion-label>
@@ -42,15 +42,13 @@
     ></ion-textarea>
   </ion-item>
 
-  <!-- <br><br>
-  <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
+  <br><br>
+  <ion-button size="large" shape="round" color="light" class="custom ion-activated ion-focused" 
     (click)="captureImage()"> 
     Add your video or photo
-  </ion-button> -->
+  </ion-button>
 
   <div class="nextPage">
-  <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary', uid, lat, long, data, note]" >NEXT</ion-button>
+    <ion-button color="new" size="large" class="custom ion-activated ion-focused" [routerLink]="['/summary', uid, lat, long, data, note]">NEXT</ion-button>
   </div>
 </ion-content>
-
-<!-- [routerLink]="['/summary']" -->
