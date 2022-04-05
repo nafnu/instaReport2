@@ -96,17 +96,18 @@ export class SummaryComponent implements OnInit {
   getConuncil() {
     const str = this.long;
     const float = parseFloat(str);
-    const fingal = -6.057170;
+    // const fingal = -6.057170;
     const dunla = -6.244754;
     const dcity = 30.204670;
 
-    if (float <= fingal && float < dunla && float < dcity) {
-      this.council = "Fingal County Council";
-      this.to = "customerservices@dublincity.ie";
-    } else if (float > fingal && float <= dunla && float < dcity) {
+    // if (float < dunla && float < dcity) {
+    //   this.council = "Fingal County Council";
+    //   this.to = "customerservices@dublincity.ie";
+    // } else 
+    if ( float <= dunla && float < dcity) {
       this.council = "Dún Laoghaire County Council";
       this.to = "info@dlrcoco.ie"
-    } else if (float > fingal && float > dunla && float >= dcity) {
+    } else if ( float > dunla && float >= dcity) {
       this.council = "Dublin City Council";
       this.to = "customerservices@dublincity.ie";
     }
