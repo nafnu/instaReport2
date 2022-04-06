@@ -2,6 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { RxwebValidators } from '@rxweb/reactive-form-validators';
+
 
 //Camera find location
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
@@ -20,11 +23,13 @@ export class DetailsComponent implements OnInit {
   long: string;
   incident: string;
 
+  detailsForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    public formBuilder: FormBuilder,
   ) { }
 
   ngOnInit() {
@@ -37,11 +42,38 @@ export class DetailsComponent implements OnInit {
     console.log(this.long);
     console.log(this.incident);
 
+    this.detailsForm = this.formBuilder.group({ 
+      notes: ['', [Validators.required, ]],
+      files:['', RxwebValidators.file({minFiles:1, maxFiles:2 })], 
+    });
+
   }
 
-  getNotes(ev: CustomEvent){
-    this.note = ev.detail.value;
-    console.log(this.note);
+  get notes(){
+    return this.detailsForm.get('notes');
+  }
+
+  public errorMessages = {
+    notes: [
+      {type: 'required', message:'Description is required'},
+      {type: 'pattern', message:'Please enter a valid notes'},
+    ],
+    files: [
+      {type: 'required', message:'At least 1 image is required'},
+      {type: 'pattern', message:'Please enter a valid image '},
+    ]
+  }
+
+  
+  
+
+  // getNotes(ev: CustomEvent) {
+  //   this.note = ev.detail.value;
+  //   console.log(this.note);
+  // }
+
+  submitDetails() {
+
   }
 
   ///**** CAPTURE IMAGE */
@@ -64,5 +96,7 @@ export class DetailsComponent implements OnInit {
     await this.authService.logout();
     this.router.navigateByUrl('login', { replaceUrl: true });
   }
+
+
 
 }

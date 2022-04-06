@@ -12,13 +12,16 @@
 </ion-header>
 
 <ion-content>
- 
+
   <ion-grid>
     <ion-row>
       <ion-col class="ion-justify-content-center">
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type</ion-button>
-        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details',uid,lat,long,data]">Details of Incident</ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/location', uid]">Incident Location
+        </ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/type',uid,lat,long]">Incident Type
+        </ion-button>
+        <ion-button color="light" class="custom ion-activated" [routerLink]="['/details',uid,lat,long,data]">Details of
+          Incident</ion-button>
         <ion-button color="new" class="custom ion-activated">Report Summary</ion-button>
       </ion-col>
     </ion-row>
@@ -33,30 +36,37 @@
   <div class="summary">
     <ion-label>Authority</ion-label>
     <ion-item>
-      <ion-input [value]="council" ></ion-input>
+      <ion-input [value]="council"></ion-input>
     </ion-item>
+
     <ion-label>Incident Type</ion-label>
     <ion-item>
-      <ion-input [value]="incident" ></ion-input>
+      <ion-input [value]="incident"></ion-input>
     </ion-item>
+
     <ion-label> Incident Location </ion-label>
     <ion-item>
-      <ion-input [value]="  lat" >Latittude</ion-input>
-      <ion-input [value]="  long" >Longitude</ion-input>
+      <ion-input [value]="  lat">Latittude </ion-input>
+      <ion-input [value]="  long">Longitude </ion-input>
     </ion-item>
-    
-    <ion-list>
+
+
     <ion-label>User Information</ion-label>
-    <p>{{users.lname}}</p>
-    <ion-item ngFor="let user of users"> 
-      <!-- <ion-label>{{ user.email }}</ion-label>  -->
-    </ion-item>
-  </ion-list>
+    <ion-list>
+      <ion-item *ngFor="let user of users">
+        <ion-label>{{ user.lname}} </ion-label>
+      
+      </ion-item>
+    </ion-list>
+ 
 
   </div>
-  <br>
-<ion-button color="new2" id="submit-btn" value="SendMail" size="large" class="custom ion-activated ion-focused" [routerLink]="['/restart']">Send
-your email of <br>the report </ion-button>
+
+
+ <br>
+  <ion-button color="new2" id="submit-btn" value="SendMail" size="large" class="custom ion-activated ion-focused"
+    [routerLink]="['/restart']">Send
+    your email of <br>the report </ion-button>
 
 </ion-content>
 <!-- 

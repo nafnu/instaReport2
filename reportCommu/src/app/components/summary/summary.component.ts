@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { DbService } from 'src/app/services/db.service';
+import { DbService, User } from 'src/app/services/db.service';
 
 import { Auth, getAuth, onAuthStateChanged } from '@angular/fire/auth';
 
@@ -24,9 +24,9 @@ export class SummaryComponent implements OnInit {
   council: string;
 
   //variable to connect get user info (email, name)
-  users = [];
-  currentU = [];
-  value: string;
+  user: User = null;
+users = [];
+  id: string;
 
   //variables to create in emailcomposer
   subject: string;
@@ -59,6 +59,8 @@ export class SummaryComponent implements OnInit {
       this.users = res;
     });
 
+    
+   
     // this.dataService.getUserById(this.value).subscribe(res => {
     //   this.currentU = res;
     // })
@@ -87,8 +89,13 @@ export class SummaryComponent implements OnInit {
 
     this.getConuncil();
     console.log(this.council);
+    console.log(this.to);
 
    
+    this.getUid();
+
+    this.getUserInfo();
+
   }
 
   
@@ -96,22 +103,23 @@ export class SummaryComponent implements OnInit {
   getConuncil() {
     const str = this.long;
     const float = parseFloat(str);
-    // const fingal = -6.057170;
     const dunla = -6.244754;
     const dcity = 30.204670;
 
-    // if (float < dunla && float < dcity) {
-    //   this.council = "Fingal County Council";
-    //   this.to = "customerservices@dublincity.ie";
-    // } else 
-    if ( float <= dunla && float < dcity) {
-      this.council = "Dún Laoghaire County Council";
-      this.to = "info@dlrcoco.ie"
-    } else if ( float > dunla && float >= dcity) {
-      this.council = "Dublin City Council";
-      this.to = "customerservices@dublincity.ie";
-    }
-    return this.council;
+    const str2 = this.lat;
+    const float2 = parseFloat(str2);
+    const dunlaL = 53.291676;
+    const dcityL = 55.184590;
+
+   if ( float <= dunla ){
+    this.council = "Dún Laoghaire County Council";
+    this.to = "info@dlrcoco.ie"
+   } else if (float <= dcity){
+     this.council = "Dublin City Council";
+     this.to = "customerservices@dublincity.ie";
+   }
+
+  
   }
 
   getUid(): void {
@@ -119,15 +127,30 @@ export class SummaryComponent implements OnInit {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const uid = user.uid;
-        this.value = uid;
-        console.log(this.value); 
+        this.id = uid;
+        console.log(this.id); 
       }
-      return ('value');
+      return ('id');
     });
-  
+
   }
   
-  
+  getUserInfo(){
+
+    // this.dataService.getUser().subscribe(res => {
+    //     console.log(res);
+    //     this.users = res;
+    //   });
+    
+    this.activatedRoute.params.subscribe(params => {
+      this.id = params ['id'];
+      this.dataService.getUserById(this.id).subscribe(res => {
+        this.user = res;
+        console.log(this.user);
+      }) 
+    })
+    
+}  
   /*** Part to send email */
   
   // sendEmail(){
