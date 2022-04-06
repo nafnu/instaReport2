@@ -43,7 +43,7 @@
 
       <ion-label>Description</ion-label>
       <ion-textarea inputmode="notes" formControlName="notes" 
-      name="notes" rows="6" cols="20"  minlength="10" maxlength="100" placeholder="Enter any notes here..."></ion-textarea>
+      name="notes" rows="6" cols="20" value="notes" minlength="10" maxlength="100" placeholder="Enter any notes here..."></ion-textarea>
     </ion-item>
     <div *ngFor="let error of errorMessages.notes">
       <ng-container *ngIf="notes.hasError(error.type) && (notes.dirty || notes.touched)">
@@ -53,25 +53,29 @@
 
     <br><br>
 
-    <!-- <app-file-upload formControlName="image"></app-file-upload> -->
+    
 
-    <ion-item>
-    <div class="form-group">
-      <label>Add your video or photo</label>
-      <input type="file" formControlName="files" class="form-control" multiple />
    
+
+    <!-- <ion-text color="new2">
+      <h4>Add your video or photo</h4>
+    </ion-text>
+  <ion-item>
+    <div class="form-group">
+     <input type="file" formControlName="files" class="form-control" multiple />
     </div>
   </ion-item>
+  -->
 
-    <!-- <ion-button size="large" shape="round" color="light" class="custom ion-activated ion-focused"
+    <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
       (click)="captureImage()">
       Add your video or photo
-    </ion-button> -->
+    </ion-button>
 
     <div class="nextPage">
       <ion-button type="submit" color="new"  size="large" class="custom ion-activated ion-focused"
       [disabled]="!detailsForm.valid"
-        [routerLink]="['/summary', uid, lat, long, incident, note]">NEXT</ion-button>
+        [routerLink]="['/summary', uid, lat, long, incident, pass]">NEXT</ion-button>
     </div>
   </ion-list>
   </form>

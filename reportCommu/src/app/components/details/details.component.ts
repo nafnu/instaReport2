@@ -16,7 +16,7 @@ import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 })
 export class DetailsComponent implements OnInit {
 
-  note: string;
+  pass: string;
 
   passedIdD: string;
   lat: string;
@@ -44,9 +44,10 @@ export class DetailsComponent implements OnInit {
 
     this.detailsForm = this.formBuilder.group({ 
       notes: ['', [Validators.required, ]],
-      files:['', RxwebValidators.file({minFiles:1, maxFiles:2 })], 
+      // files:['', RxwebValidators.file({minFiles:1, maxFiles:2 })], 
     });
 
+    this.description();
   }
 
   get notes(){
@@ -58,21 +59,25 @@ export class DetailsComponent implements OnInit {
       {type: 'required', message:'Description is required'},
       {type: 'pattern', message:'Please enter a valid notes'},
     ],
-    files: [
-      {type: 'required', message:'At least 1 image is required'},
-      {type: 'pattern', message:'Please enter a valid image '},
-    ]
+    // files: [
+    //   {type: 'required', message:'At least 1 image is required'},
+    //   {type: 'pattern', message:'Please enter a valid image '},
+    // ]
   }
 
+  async description(){
+this.pass = await this.detailsForm.get('notes').value;
+    console.log(this.pass); //test the work the form
+
   
-  
+  }
 
   // getNotes(ev: CustomEvent) {
   //   this.note = ev.detail.value;
   //   console.log(this.note);
   // }
 
-  submitDetails() {
+  public submitDetails() {
 
   }
 

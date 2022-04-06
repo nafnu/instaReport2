@@ -22,16 +22,14 @@ export interface type {
 }
 
 export interface Report {
+    id?: string;
     uid?: string;
-    idRep: string;
-    location: {
-        lat:number;
-        lng: number;
-    };
-    imagen: [];
-    idfield: string; 
+    lat:number;
+    lng: number;
+    imagen: string;
     description: string;
     authority: string;
+    incident: string;
 }
 
 
