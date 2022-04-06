@@ -21,7 +21,7 @@ export interface Type {
 }
 
 export interface User {
-  id?: string;
+  reportId?: string;
   lname: string;
   fname: string;
   email: string;
@@ -34,7 +34,7 @@ export interface User {
 }
 
 export interface Report {
-  id?:string;
+  id?: string;
   uid?: string;
   lat: number;
   lng: number;
@@ -73,12 +73,6 @@ export class DbService {
     return docData(typeRef, { idField: 'idField' }) as Observable<Type>;
   }
 
-  //Get report history  from the Firebase
-  getReports(): Observable<Report[]> {
-    const reportRef = collection(this.firestore, 'reports');
-    return collectionData(reportRef, { idField: 'id' }) as Observable<Report[]>;
-  }
-
   //Get user from the Firebase
   getUser(): Observable<User[]> {
     const userRef = collection(this.firestore, 'users');
@@ -93,26 +87,27 @@ export class DbService {
 
   //Report seccion
 
-  getsReport(): Observable<Report[]> {
-    const notesRef = collection(this.firestore, 'reports');
-    return collectionData(notesRef, { idField: 'id'}) as Observable<Report[]>;
+  //Get report history  from the Firebase
+  getReports(): Observable<Report[]> {
+    const reportRef = collection(this.firestore, 'reports');
+    return collectionData(reportRef, { idField: 'reportId' }) as Observable<Report[]>;
   }
- 
+
   getReportById(id): Observable<Report> {
     const reportDocRef = doc(this.firestore, `reports/${id}`);
-    return docData(reportDocRef, { idField: 'id' }) as Observable<Report>;
+    return docData(reportDocRef, { idField: 'reportId' }) as Observable<Report>;
   }
- 
+
   createReport(report: Report): Promise<void> {
     const group = doc(collection(this.firestore, 'reports'));
     return setDoc(group, report);
   }
- 
-  deleteReport(report: Report): Promise<void>{
+
+  deleteReport(report: Report): Promise<void> {
     const reportDocRef = doc(this.firestore, `reports/${report.id}`);
     return deleteDoc(reportDocRef);
   }
- 
+
   // updateReport(report: Report) {
   //   const reportDocRef = doc(this.firestore, `report/${report.id}`);
   //   return updateDoc(reportDocRef, { title: report.title, text: report.text });

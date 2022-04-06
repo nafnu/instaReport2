@@ -57,7 +57,7 @@
 
    
 
-    <!-- <ion-text color="new2">
+    <ion-text color="new2">
       <h4>Add your video or photo</h4>
     </ion-text>
   <ion-item>
@@ -65,17 +65,17 @@
      <input type="file" formControlName="files" class="form-control" multiple />
     </div>
   </ion-item>
-  -->
+ 
 
-    <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
+    <!-- <ion-button size="large" shape="round" color="new2" class="custom ion-activated ion-focused"
       (click)="captureImage()">
       Add your video or photo
-    </ion-button>
+    </ion-button> -->
 
     <div class="nextPage">
       <ion-button type="submit" color="new"  size="large" class="custom ion-activated ion-focused"
       [disabled]="!detailsForm.valid"
-        [routerLink]="['/summary', uid, lat, long, incident, pass]">NEXT</ion-button>
+      [routerLink]="['/summary', uid, lat, long, incident, pass]">NEXT</ion-button>
     </div>
   </ion-list>
   </form>

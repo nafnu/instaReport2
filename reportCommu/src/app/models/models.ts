@@ -22,7 +22,7 @@ export interface type {
 }
 
 export interface Report {
-    id?: string;
+    reportId?: string;
     uid?: string;
     lat:number;
     lng: number;

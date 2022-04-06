@@ -40,11 +40,6 @@ value: string;
       
   }
 
-  deleteReport(){
-
-    this.dataService.deleteReport(this.report);
-
-  }
 
   ngOnInit() {
     this.getUid();

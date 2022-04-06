@@ -44,7 +44,7 @@ export class DetailsComponent implements OnInit {
 
     this.detailsForm = this.formBuilder.group({ 
       notes: ['', [Validators.required, ]],
-      // files:['', RxwebValidators.file({minFiles:1, maxFiles:2 })], 
+      files:['', RxwebValidators.file({minFiles:1, maxFiles:2 })], 
     });
 
     this.description();
@@ -66,7 +66,7 @@ export class DetailsComponent implements OnInit {
   }
 
   async description(){
-this.pass = await this.detailsForm.get('notes').value;
+    this.pass = await this.detailsForm.get('notes').value;
     console.log(this.pass); //test the work the form
 
   

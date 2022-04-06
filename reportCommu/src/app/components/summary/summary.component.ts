@@ -39,7 +39,7 @@ export class SummaryComponent implements OnInit {
 
   //interfaces to save information on Firebase
    report: Report = {
-    id: null,
+    reportId: null,
      uid: null,
      lat: null,
      lng: null,
